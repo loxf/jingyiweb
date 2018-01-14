@@ -1,0 +1,27 @@
+@import "../../../../styles/_commonColor.scss";
+.tabDataList{
+  position:fixed;
+  width:100%;
+  top:48PX;
+  left:0;
+  .title{
+    display: flex;
+    align-items: center;
+    background: white;
+    border-bottom: solid 1PX $borderColor;
+    &>div{
+      flex:1;
+      font-size: 46px;
+      height:45PX;
+      line-height: 45PX;
+      text-align: center;
+    }
+    .active{
+      color:$orange;
+      border-bottom: solid 4PX $orange;
+    }
+  }
+  .content{
+    background: white;
+  }
+}

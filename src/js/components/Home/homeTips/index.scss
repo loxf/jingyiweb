@@ -1,0 +1,19 @@
+.tipsContainer {
+  background: linear-gradient(90deg, #2582EA 0%, #25A0EA 100%);
+  color:white;
+  font-size: 26px;
+  height: 72px;
+  line-height: 72px;
+  padding: 0 30px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  transition: opacity 1.5s;
+  z-index: 100;
+}
+
+.hide {
+  opacity: 0;
+}

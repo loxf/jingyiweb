@@ -1,0 +1,698 @@
+@import "./_commonColor.scss";
+
+.confirm-order-container {
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: inherit;
+}
+
+.mr-30 {
+  margin-right: 30px;
+}
+
+.pr-30 {
+  padding-right: 30px;
+}
+
+//进度条
+.w-progress {
+  background: $white;
+  position: relative;
+  height: 170px;
+  padding-top: 70px;
+  text-align: center;
+}
+
+.w-progress-line {
+  position: absolute;
+  top: 62px;
+  left: 16.5%;
+  height: 1PX;
+  width: 66.7%;
+  background: $gray;
+  z-index: 0;
+
+  //小圆点
+  span {
+    position: absolute;
+    display: block;
+    top: -12px;
+    margin-left: -20px;
+    width: 40px;
+    height: 20px;
+    background: $white;
+    z-index: 1;
+
+    &:nth-child(1) {
+      left: 0;
+    }
+    &:nth-child(2) {
+      left: 50%;
+    }
+    &:nth-child(3) {
+      left: 100%;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      box-sizing: content-box;
+      left: 10px;
+      top: 4.5px;
+      width: 18px;
+      height: 18px;
+      background: $gray;
+      border-radius: 50%;
+      z-index: 2;
+    }
+  }
+
+  //当前位置
+  span.current {
+    width: 50px;
+    &:after {
+      background: $blue;
+      border: 8px solid $blue50;
+      top: -4px;
+    }
+  }
+  span.fail {
+    width: 50px;
+    &:after {
+      background: $red;
+      border: 8px solid $red50;
+      top: -4px;
+    }
+  }
+}
+
+.w-progress-step {
+  position: relative;
+  top: 20px;
+  width: 33.33333333%;
+  float: left;
+  font-size: 28px;
+  color: $gray;
+}
+
+.w-progress-step.current {
+  color: $blue;
+}
+
+.w-progress-step.fail {
+  color: $red;
+}
+
+//进度条进度
+.success-0 {
+  .w-progress-line {
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1PX;
+      width: 0;
+      background: $blue;
+      z-index: 1;
+    }
+
+    span {
+      &:nth-child(1) {
+        &:after {
+          background: $blue;
+          border: 8px solid $blue50;
+          top: -4px;
+        }
+      }
+    }
+  }
+
+  .w-progress-step {
+    color: $gray;
+    &:nth-child(2) {
+      color: $blue;
+    }
+  }
+}
+
+.success-50 {
+  .w-progress-line {
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1PX;
+      width: 50%;
+      background: $blue;
+      z-index: 1;
+    }
+
+    span {
+      &:nth-child(1) {
+        &:after {
+          background: $blue;
+        }
+      }
+      &:nth-child(2) {
+        &:after {
+          background: $blue;
+          border: 8px solid $blue50;
+          top: -4px;
+        }
+      }
+    }
+  }
+
+  .w-progress-step {
+    color: $blue;
+    &:last-of-type {
+      color: $gray;
+    }
+  }
+}
+
+.success-100 {
+  .w-progress-line {
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1PX;
+      width: 100%;
+      background: $blue;
+      z-index: 1;
+    }
+
+    span {
+      &:after {
+        background: $blue;
+      }
+      &:nth-child(3) {
+        &:after {
+          background: $blue;
+          border: 8px solid $blue50;
+          top: -4px;
+        }
+      }
+    }
+  }
+
+  .w-progress-step {
+    color: $blue;
+  }
+}
+
+//进度条失败
+.fail-50 {
+  .w-progress-line {
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      height: 1PX;
+      width: 50%;
+      background: $red;
+      z-index: 0;
+    }
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1PX;
+      width: 50%;
+      background: $blue;
+      z-index: 0;
+    }
+
+    span {
+      &:after {
+        background: $blue;
+      }
+      &:nth-child(3) {
+        &:after {
+          background: $red;
+          border: 8px solid $red50;
+          top: -4px;
+        }
+      }
+    }
+  }
+  .w-progress-step {
+    color: $blue;
+    &:last-of-type {
+      color: $red;
+    }
+  }
+}
+
+.fail-100 {
+  .w-progress-line {
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 1PX;
+      width: 100%;
+      background: $red;
+      z-index: 1;
+    }
+
+    span {
+      &:after {
+        background: $red;
+      }
+      &:nth-child(3) {
+        &:after {
+          background: $red;
+          border: 8px solid $red50;
+          top: -4px;
+        }
+      }
+    }
+  }
+
+  .w-progress-step {
+    color: $red;
+  }
+}
+
+.am-switch input[type="checkbox"]:checked + .checkbox {
+  background: $blue;
+}
+
+.flex1 {
+  flex: 1
+}
+
+//order区块
+.order-item {
+  background: $white;
+  padding-left: 30px;
+  margin-top: 24px;
+
+  span {
+    font-size: 30px;
+    color: $black;
+  }
+  p {
+    font-size: 24px;
+    color: $gray;
+  }
+  .fr-span {
+    float: right;
+    padding-right: 30px;
+  }
+  .fr-span-image {
+    img {
+      width: 30px;
+      vertical-align: middle;
+    }
+  }
+}
+
+//优惠显示样式
+.common-discount-info {
+  height: 96px;
+
+  .discount-info-left {
+    flex: 1;
+    .discount-info-title {
+      font-size: 32px;
+    }
+    .discount-info-message {
+      font-size: 24px;
+      color: $gray;
+    }
+    .discount-info-title-sec {
+      padding: 0 12px;
+      color: #ABABAB;
+      font-size: 24px;
+    }
+  }
+
+  .discount-info-right {
+    font-size: 28px;
+  }
+}
+
+.show-border-top {
+  & > div {
+    border-top: 1PX solid #e5e5e5;
+  }
+  & > div:first-of-type {
+    border-top: none;
+  }
+}
+
+/*
+//顶部
+.order-top {
+  @extend .order-item;
+  //业务名称与说明
+  .order-top-name {
+    padding-right: 30px;
+    height: 160px;
+    width: 100%;
+    & > div {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      &>div:nth-child(1){
+        flex:1;
+      }
+      &>div:nth-child(2){
+        background: url('../images/right-arr.png') no-repeat right center;
+        background-size: auto 25px;
+        width:50px;
+        height:50px;
+      }
+    }
+  }
+  .order-top-money {
+    height: 88px;
+  }
+}
+*/
+
+.inspection-type-items {
+  padding: 45px 30px;
+  background-color: $white;
+  margin-top: 24px;
+  .inspection-type-item {
+    &:nth-child(1) {
+      color: $black;
+      font-size: 30px;
+    }
+    &:nth-child(2) {
+      color: $gray;
+      font-size: 24px;
+    }
+  }
+}
+
+.warning-message {
+  color: $warningRed;
+}
+
+.all-discount{
+  margin-top: 24px;
+}
+
+//vip车务卡
+.order-discount {
+  @extend .order-item;
+  padding-right: 30px;
+  .vip-discount-info {
+    @extend .common-discount-info;
+    height: 100px;
+    border-top: 1PX solid #e5e5e5;
+    img {
+      position: relative;
+      top: 4px;
+      width: 30px;
+      height: 30px;
+      margin-left: 10px;
+    }
+  }
+
+  .vip-discount-unuserd {
+    color: #DDDDDD;
+    .discount-info-title {
+      color: #DDDDDD;
+    }
+  }
+  .w-list-item {
+    padding: 0;
+    height: 130px;
+    // border-bottom: 1PX solid #e5e5e5;
+    .vip-card-title {
+      flex: 1;
+      span {
+        font-size: 30px;
+        color: $black;
+      }
+      p {
+        color: $gray;
+        font-size: 24px;
+      }
+      img {
+        position: relative;
+        top: 4px;
+        width: 30px;
+        height: 30px;
+        margin-left: 10px;
+      }
+    }
+  }
+  .vip-card-info {
+    padding: 24px 30px 24px 0;
+    border-top: 1PX solid #e5e5e5;
+    font-size: 28px;
+    div {
+      height: 50px;
+      line-height: 50px;
+      color: $gray;
+      img {
+        float: right;
+        height: 28px;
+        width: auto;
+        position: relative;
+        top: 8.5px;
+      }
+
+      &:last-of-type {
+        height: 50px;
+      }
+    }
+  }
+  .vip-card-money {
+    font-size: 30px;
+    color: $black;
+    text-align: right;
+    padding: 0 30px 30px 0;
+  }
+  //优惠券
+  .coupon-box {
+    @extend .common-discount-info;
+    height: 88px;
+    border-top: 1PX solid #e5e5e5;
+    span {
+      flex: 1;
+      font-size: 30px;
+      color: $black;
+    }
+    p {
+      text-align: right;
+      padding-right: 30px;
+      font-size: 24px;
+      color: $gray;
+    }
+  }
+  .coupon-select {
+    @extend .common-discount-info;
+    height: 100px;
+    .coupon-title {
+      flex: 1;
+      span {
+        font-size: 30px;
+        color: $black;
+      }
+      p {
+        font-size: 24px;
+        color: $gray;
+      }
+    }
+  }
+  //右箭头盒子
+  .right-arr-box {
+    padding: 40px 0;
+    background: url('../images/right-arr.png') no-repeat right center;
+    background-size: auto 25px;
+    .discount-info-right {
+      margin-right: 36px;
+    }
+    .color-border-div {
+      text-align: right;
+      height: 35px;
+      line-height: 35px;
+      padding: 0 12px;
+      margin-right: 36px;
+      font-size: 22px;
+      color: #FF8707;
+      border: 1PX solid #FF8707;
+      border-radius: 4px;
+    }
+    .unable-border-div {
+      color: #dddddd;
+      border: none;
+      font-size: 28px;
+      padding: 0;
+      margin-right: 0;
+    }
+  }
+  .unable-right-arr-box {
+    background-image: none;
+  }
+
+}
+
+//总计
+.order-count {
+  @extend .order-item;
+  height: 88px;
+  .fr-span {
+    color: $red;
+  }
+}
+
+.account-detail-content {
+  background: white;
+  font-size: 26px;
+  padding: 30px 0;
+  margin-top: 24px;
+  & > .account-detail-item {
+    align-items: center;
+    padding: 0 30px;
+    height: 56px;
+    display: flex;
+    span {
+      color: #333333;
+      display: block;
+    }
+    span:nth-child(2) {
+      color: #FF4444
+    }
+  }
+}
+
+//支付类型
+.pay-type {
+  @extend .order-item;
+  font-size: 30px;
+  & > div {
+    height: 88px;
+    img {
+      margin-right: 30px;
+    }
+    .pay-type-icon {
+      width: 50px;
+      height: 50px;
+    }
+    .pay-type-select-icon {
+      width: 44px;
+      height: 44px;
+    }
+  }
+}
+
+//支付订单按钮
+.pay-button-box {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 100px;
+  width: 100%;
+  background: #fff;
+  border-top: 1PX solid #cccccc;
+  .pay-button-money {
+    text-align: left;
+    padding: 0 0 0 30px;
+    span:nth-child(2) {
+      color: $warningRed;
+      &:first-of-type {
+        margin-right: 20px;
+      }
+    }
+  }
+  .pay-button {
+    width: 200px;
+    height: 98px;
+    line-height: 98px;
+    text-align: center;
+    background: $blue;
+    color: #fff;
+    font-size: 32px;
+    border: none;
+    outline: none;
+  }
+}
+
+.tips {
+  color: #6A6A6A;
+  font-size: 24px;
+  padding: 54px 0 20px 30px;
+}
+
+.toolTipContainer {
+  position: absolute;
+  top: 370px;
+  right: 180px;
+}
+
+.appAdapt {
+  top: 458px;
+}
+
+.user-message-group {
+  padding: 0 30px;
+  background-color: $white;
+}
+
+.check-item-list {
+  margin-top: 24px;
+}
+
+.bottom-warning {
+  padding: 18px;
+  text-align: center;
+  ont-size: 12px;
+  color: #9A9A9A;
+}
+
+.alertContentContainer {
+  width:520px;
+  .title {
+    text-align: center;
+    color: $black;
+    font-size: 32px;
+  }
+  & > ul {
+    color:$darkgray;
+    font-size: 26px;
+    width:480px;
+    margin:30px auto 40px auto;
+    li{
+      display:list-item;
+      list-style: disc;
+      margin-left: 30px;
+      span{
+      }
+    }
+  }
+  button {
+    height: 84px;
+    color: $white;
+    border-radius: 6px;
+    border: none;
+    width: 100%;
+    background-color: $blue;
+    margin-top: 10px;
+  }
+}

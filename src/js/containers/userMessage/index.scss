@@ -1,0 +1,23 @@
+@import "../../../styles/_commonColor.scss";
+.userMessage {
+  .mainItem {
+    margin-top: 20px;
+    .item{
+      display: flex;;
+      font-size: 46px;
+      align-items: center;
+      height:150px;
+      padding-right: 40px;
+      div{
+        &:nth-child(2){
+          color:$gray;
+          flex: 1;
+          text-align: right;
+        }
+      }
+    }
+  }
+  .buttonGroup{
+    margin-top: 60px;
+  }
+}

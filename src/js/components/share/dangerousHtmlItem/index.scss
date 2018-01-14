@@ -1,0 +1,17 @@
+@import "../../../../styles/_commonColor.scss";
+.container{
+  background: white;
+  padding:0 0 40px 40px;
+  width:100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  .title{
+    font-size: 46px;
+    height:118px;
+    line-height: 118px;
+    border-bottom: solid 1PX $borderColor;
+  }
+  .content{
+    padding-right: 40px;
+  }
+}

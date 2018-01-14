@@ -1,0 +1,34 @@
+.list {
+    margin: -.2rem 0 0;
+    .btn {
+        display: inline-block;
+        width: 100%;
+        height: 84px;
+        line-height: 84px;
+        color: #fff;
+        background-color: #2582EA;
+        text-align: center;
+        border: solid 1PX #2582EA;
+        border-radius:6px;
+        font-size:34px;
+        padding: 0
+        }
+        .btn:active {
+            opacity: .8
+        }
+    .btnTwo {
+        padding-top: 40px;
+        .btn:first-child {
+            width:45%;
+            color: #2582EA;
+            background-color: #fff;
+        }
+        .btn:last-child {
+            float: right;
+            width:45%;
+        }
+    }
+    .btnOne{
+        padding-top: 40px;
+    }
+}

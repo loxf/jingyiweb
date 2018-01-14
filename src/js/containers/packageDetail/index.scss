@@ -1,0 +1,31 @@
+@import "../../../styles/_commonColor.scss";
+.container {
+  .headerImg {
+    width: 100%;
+    display: block;;
+  }
+
+  .teachers{
+    margin-top: 20px;
+    border-bottom: solid 1PX $borderColor;
+  }
+
+  .detail{
+    margin-top: 20px;
+  }
+
+  .buy{
+    position:fixed;
+    bottom:0;
+    left: 0;
+    width:100%;
+    height:148px;
+    border:none;
+    background-color:  #f54837;
+    color:white;
+    font-size: 52px;
+  }
+  .space{
+    height:168px;
+  }
+}

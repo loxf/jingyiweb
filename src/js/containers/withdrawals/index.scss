@@ -1,0 +1,71 @@
+@import "../../../styles/_commonColor.scss";
+.container{
+  .content{
+    margin-top: 20px;
+    background: white;
+    padding:40px;
+    .message{
+      font-size: 36px;
+      color:$gray;
+    }
+    .input{
+      border-bottom: solid 1PX $borderColor;
+      font-size: 126px;
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      input{
+        display: block;
+        border:none;
+        color:$mainBlack;
+        outline: none;
+        font-size: 126px;
+        width:50%;
+        flex:1;
+      }
+      .rate{
+        font-size: 36px;
+        color:gray;
+      }
+    }
+
+    .bottomMessage{
+      display: flex;
+      font-size: 38px;
+      padding:30px 0 0 0 ;
+      div{
+        flex: 1;
+        color:$gray;
+      }
+      a{
+        flex: 1;
+        display: block;
+        text-align: right;
+        color:#1190f2;
+      }
+    }
+
+  }
+  .submit{
+    margin-top: 60px;
+  }
+
+  .tips{
+    color:#666;
+    text-align: center;
+    font-size: 36px;
+    margin-top: 30px;
+  }
+}
+
+.password{
+  input{
+    height:100px;
+    width:80%;
+    border:solid 1PX $gray;
+    border-radius: 5PX;
+    margin: 20px auto 0 auto;
+    display: block;
+    text-align: center;
+  }
+}

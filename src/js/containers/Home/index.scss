@@ -1,0 +1,153 @@
+@import "../../../styles/_commonColor.scss";
+
+.container {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+
+  .headerContainer {
+    position:relative;
+    height: 540px;
+    img {
+      height: 540px !important;
+      width:100% !important;
+    }
+
+    .signButton{
+      background: transparent;
+      position:absolute;
+      top:30px;
+      left:30px;
+      height:74px;
+      padding:0 30px;
+      border-radius: 50px;
+      border:solid 1PX $orange;
+      font-size: 42px;
+      color:$orange;
+      z-index: 9999;
+      outline: none;
+    }
+  }
+  .activityContent {
+    margin: 20px 0 0 0;
+    padding: 26px 0 40px 40px;
+    background: white;
+    .activitySliderContainer {
+      margin-top: 16px;
+      .activityCarouselContainer {
+        width: 95%;
+        overflow: visible;
+        & > div {
+          overflow: visible !important;
+          & > div {
+            overflow: visible !important;
+          }
+        }
+      }
+    }
+  }
+
+  .lessonContent {
+    margin: 20px 0 0 0;
+    padding: 26px 40px 70px 40px;
+    background: white;
+    .lessonTitle {
+      display: flex;
+      align-items: center;
+      .title {
+        flex: 1;
+      }
+      a {
+        display: block;
+        font-size: 42px;
+        color: $gray;
+      }
+    }
+
+    .lessonSliderContainer {
+      margin: 36px 0 0 0;
+    }
+
+    .lessonItem {
+      img {
+        display: block;
+        height: 380px;
+        width: 100%;
+      }
+      & > div {
+        margin: 30px 0 0 0;
+        font-size: 42px;
+        color: $mainBlack;
+        text-align: center;
+      }
+    }
+  }
+
+  .productsContent {
+    margin: 20px 0 0 0;
+    padding: 26px 0 0 40px;
+    background: white;
+    border-bottom: solid 1PX $borderColor;
+    .more {
+      height: 120px;
+      line-height: 120px;
+      color: #730663;
+      font-size: 42px;
+      text-align: center;
+    }
+  }
+
+  .links {
+    padding: 26px 40px 40px 40px;
+    background: white;
+    margin-top: 20px;
+    .linksContent {
+      margin-top: 36px;
+      img {
+        display: block;
+        width: 320px;
+        height: 136px;
+        border: solid 1PX $borderColor;
+      }
+    }
+  }
+
+  .aboutUs {
+    padding: 40px 30px;
+    display: flex;
+    justify-content: space-between;
+    .aboutItem {
+      width: 500px;
+      height: 165px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 46px;
+      color: $gray;
+      border: solid 1PX $borderColor;
+      border-radius: 20px;
+      background: white;
+      img {
+        display: block;
+        height: 68px;
+        width: 68px;
+        margin-right: 40px;
+      }
+    }
+  }
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  color: $mainBlack;
+  & > div:nth-child(1) {
+    width: 9px;
+    height: 56px;
+    background: $mainPurple;
+  }
+  & > div:nth-child(2) {
+    font-size: 46px;
+    margin-left: 30px;
+  }
+}

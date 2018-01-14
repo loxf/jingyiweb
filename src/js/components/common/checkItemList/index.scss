@@ -1,0 +1,9 @@
+.checkItemList{
+  .checkItem{
+    display: flex;
+    align-items: center;
+    .itemContent{
+      flex: 1;
+    }
+  }
+}

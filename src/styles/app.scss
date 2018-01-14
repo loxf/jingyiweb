@@ -1,0 +1,206 @@
+// 使用建议
+// --------------------------------------------------
+// CSS Modules 是对现有的 CSS 做减法。为了追求简单可控，建议遵循如下原则：
+// ·不使用选择器（id,伪类，标签等)，只使用class名来定义样式
+// ·不层叠多个class，只使用一个class把所有样式定义好
+// ·所有样式通过 composes 组合来实现复用
+// ·不嵌套
+// --------------------------------------------------
+
+// 公有样式引入mixins的目的是为了方便默认设置若干常用的样式
+// 公有样式不可以使用composes
+@import "./mixins.scss";
+@import "./_commonColor.scss";
+
+
+// 全局设置
+// --------------------------------------------------
+
+//
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0 none;
+  font-size: inherit;
+  color: inherit;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+
+  /* 在X5新内核Blink中，在排版页面的时候，会主动对字体进行放大，会检测页面中的主字体，当某一块字体在我们的判定规则中，认为字号较小，并且是页面中的主要字体，就会采取主动放大的操作。然而这不是我们想要的，可以采取给最大高度解决 */
+  max-height: 100000px;
+}
+
+@import "./_adaptScreen.scss";
+@import "./adaptToast.scss";
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+em, strong {
+  font-style: normal;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+// 全局盒子模型设置
+* {
+  box-sizing: $box-model;
+}
+
+*:before,
+*:after {
+  box-sizing: $box-model;
+}
+
+// -webkit-tap-highlight-color 是一个 不规范的属性，它没有出现在 CSS 规范草案中。
+// 当用户点击iOS的Safari浏览器中的链接或JavaScript的可点击的元素时，覆盖显示的高亮颜色。
+html, body {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,body,#app{
+  height:100%;
+}
+
+body {
+  font-family: $font-family-zh;
+  line-height: 1.5;
+  color: $mainBlack;
+  background-color: $bggray;
+  font-size: 0.24rem;
+}
+
+// Links
+a {
+  text-decoration: none;
+  outline: none;
+  &:hover,
+  &:link,
+  &:focus {
+    text-decoration: none;
+  }
+  &:visited {
+  }
+}
+
+
+// 图片设置
+img {
+  max-width: 100%;
+}
+
+
+// 这里主要应付 antd-mobile 的组件carousel 不能等比缩放的蛋疼问题
+.home-swipe {
+  height: 40.625vw;
+  max-height: 406.25px;
+}
+//地区选择器宽度
+.am-list-extra{
+  flex-basis: 56%!important;
+}
+
+//地区标题宽度
+.am-list-content{
+  overflow: visible!important;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+// 文本控制类
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+// 字符溢出隐藏
+.text-overflow-1 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 字符超出一行溢出隐藏
+.text-overflow-one {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+// 字符超出两行溢出隐藏
+.text-overflow-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+// 字符超出三行溢出隐藏
+.text-overflow-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+// 浮动控制
+.cf {
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+
+// 元素绝对定位的垂直水平居中
+.absolute-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.height100 {
+  height: 100%
+}
+
+.minheight110 {
+  min-height: 110%;
+}
+// 按钮
+.am-button-primary {
+    background-color:$blue;
+    border: 1PX solid $blue;
+}
+.am-button-ghost {
+    color:  $blue;
+    border-color: $blue;
+}
+.am-button {
+  border-radius: 6px;
+}
+// 箭头 
+.am-list-item .am-list-line .am-list-arrow {
+  background-size: 16px auto;
+}
+

@@ -1,0 +1,112 @@
+@import "../../../../styles/_commonColor.scss";
+.flexContainer {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  flex-direction: column;
+  transition: all 0.5s;
+  .alertContainer {
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    z-index: 2;
+    width:fit-content;
+    min-width: 864px;
+    min-height: 576px;
+    opacity: 1;
+    border-radius: 15px;
+    background-color: white;
+    margin: auto;
+    /*  top: 50%;
+      margin-top: -200px;
+      left: 50%;
+      margin-left: -300px;*/
+    color: black;
+    font-size: 46px;
+    line-height: 75px;
+    padding: 112px 58px 58px 58px;
+    box-sizing: border-box;
+    .closeContainer {
+      .close {
+        width: 84px;
+        height: 84px;
+        position: absolute;
+        top: 29px;
+        right: 29px;
+        background: url('./images/icon_close.png');
+        background-size: 84px 84px;
+        border: none;
+      }
+    }
+    .content {
+      padding: 43px 0 43px 0;
+      min-height: 200px;
+      min-width: 560px;
+      max-width: 100%;
+      margin: auto;
+      text-align: center;
+    }
+    .alertContent{
+      width: 560px;
+      word-break: break-all;
+    }
+    .buttonContainer {
+      text-align: center;
+      button {
+        text-align: center;
+        height: 121px;
+        border-radius: 8.5px;
+        width: 340px;
+        border: 1PX solid $orange;
+        margin: 0;
+        padding: 0;
+      }
+      .cancel {
+        color: $orange;
+        background-color: white;
+      }
+
+      .ok {
+        color: white;
+        background-color: $orange;
+        margin-left: 70px;
+      }
+      .singleButton {
+        width: 100%;
+        background-color: $orange;
+        color: white;
+        border: none;
+      }
+    }
+  }
+
+  .noBorder{
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+  }
+}
+  .mask {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+.slowHide {
+  opacity: 0;
+  transform: scale3d(0, 0, 0);
+}
+
+.hide {
+  display: none;
+}

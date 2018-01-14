@@ -1,0 +1,48 @@
+.load{
+    position: fixed;
+    z-index: 999;
+    top:50%;
+    left: 50%;
+    text-align: center;
+    margin-top: -260px;
+    width: 200px;
+    margin-left: -100px;
+    color: #999;
+    font-size: 24px;
+    .loadMark{
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        background: #fff;
+    }
+    &>img {
+        width: 100px;
+        height: auto;
+    }
+    &>p{
+        &>span {
+            padding-left: 20px;
+        animation: myfirst 2s  infinite linear ;
+        -moz-animation: myfirst 2s  infinite linear ; /* Firefox */
+        -webkit-animation:myfirst 2s  infinite linear ; /* Safari and Chrome */
+        }
+    } 
+}
+@keyframes myfirst{
+        0% {opacity: 1}
+        70% {opacity: 0.2}
+        100% {opacity: 1}
+        }
+    @-moz-keyframes myfirst{
+         0% {opacity: 1}
+        70% {opacity: 0.2}
+        100% {opacity: 1}
+    }
+    @-webkit-keyframes myfirst {
+          0% {opacity: 1}
+        70% {opacity: 0.2}
+        100% {opacity: 1}
+    }

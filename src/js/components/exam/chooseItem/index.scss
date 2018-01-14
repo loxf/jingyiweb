@@ -1,0 +1,20 @@
+@import "../../../../styles/_commonColor.scss";
+.chooseItem{
+  font-size: $mainBlack;
+  font-size: 48px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 75px;
+
+  .title{
+    height:78px;
+    width:78px;
+    line-height: 78px;
+    text-align: center;
+    border:solid 1PX $borderColor;
+    border-radius: 50%;
+  }
+  p{
+    margin-left: 40px;
+  }
+}

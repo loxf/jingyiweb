@@ -1,0 +1,14 @@
+//此处添加响应式代码，防止小屏幕字体太大导致布局错乱
+//以iphone6为基准将html字体设置为50px，随屏幕大小调整字体大小
+html {font-size: 312.5px;}//防止浏览器不支持媒体查询造成尴尬
+@media screen and (min-width: 1025px) { html {font-size: 800px;} }
+@media screen and (max-width: 1024px) { html {font-size: 800px;} }
+@media screen and (max-width: 980px) { html {font-size: 800px;} }
+@media screen and (max-width: 720px) { html {font-size: 800px;} }
+@media screen and (max-width: 640px) { html {font-size: 700px;} }
+@media screen and (max-width: 540px) { html {font-size: 600px;} }
+@media screen and (max-width: 480px) { html {font-size: 500px;} }
+@media screen and (max-width: 400px) { html {font-size: 450px;} }
+@media screen and (max-width: 360px) { html {font-size: 400px;} }
+@media screen and (max-width: 300px) { html {font-size: 350px;} }
+@media screen and (max-width: 240px) { html {font-size: 300px;} }

@@ -1,0 +1,32 @@
+@import "../../../../styles/_commonColor.scss";
+.activityItem{
+  display:flex;
+  padding:40px 0;
+  align-items: flex-start;
+  position:relative;
+  .mainImg{
+    display: block;
+    width:434px;
+    height:266px;
+  }
+  .content{
+    font-size: 38px;
+    color:$gray;
+    margin: -10px 0 0 30px;
+    &>div{
+      margin-top: 10px;
+      &:nth-child(1){
+        color:$mainBlack;
+        font-size: 42px;
+        margin-top: 0;
+      }
+    }
+  }
+  .statusImg{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width:148px;
+    height:132px;
+  }
+}

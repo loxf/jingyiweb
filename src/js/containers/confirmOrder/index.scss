@@ -1,0 +1,58 @@
+@import "../../../styles/_commonColor.scss";
+.confirmOrder{
+  .userMessage{
+    font-size: 46px;
+    margin-top: 20px;
+    background: white;
+    padding:0 0 0 40px ;
+    border-bottom: solid 1PX $borderColor;
+    border-top: solid 1PX $borderColor;
+    .input{
+      border-top: solid 1PX $borderColor;
+    }
+    .title{
+      height:150px;
+      line-height: 150px;
+    }
+  }
+  .payTypeTitle{
+    padding: 60px 40px;
+    color:#666666;
+    font-size: 38px;
+  }
+  .payTypeItem{
+    height:150px;
+    display: flex;
+    align-items: center;
+    img{
+      display: block;
+      height:56px;
+      width:56px;
+    }
+
+    &>div{
+      font-size: 46px;
+      color:$mainBlack;
+      margin-left: 40px;
+      span{
+        font-size: 36px;
+        color: $gray;
+      }
+    }
+  }
+  .submit{
+    margin-top: 60px;
+  }
+}
+
+.password{
+  input{
+    height:100px;
+    width:80%;
+    border:solid 1PX $gray;
+    border-radius: 5PX;
+    margin: 20px auto 0 auto;
+    display: block;
+    text-align: center;
+  }
+}

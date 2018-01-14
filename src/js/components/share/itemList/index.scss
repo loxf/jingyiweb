@@ -1,0 +1,15 @@
+@import "../../../../styles/_commonColor.scss";
+.container{
+  padding:0 0 0 40px;
+  border-top: solid 1PX $borderColor;
+  border-bottom: solid 1PX $borderColor;
+  background: white;
+  margin: 0;
+  .listItem{
+    width:100%;
+    border-bottom: solid 1PX $borderColor;
+    &:nth-last-child(1){
+      border:none;
+    }
+  }
+}

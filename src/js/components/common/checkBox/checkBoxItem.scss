@@ -1,0 +1,24 @@
+@import "../../../../styles/_commonColor.scss";
+.CheckBoxItem{
+  display: flex;
+  align-items: center;
+  .checkIcon{
+    width: 38px;
+    height:38px;
+    border-radius: 38px;
+    border:solid 1PX $gray;
+  }
+  .checked{
+    border:solid 1PX #2582EA;
+    background-color: #2582EA;
+    background-image: url('./img/Fill.png');
+    background-repeat: no-repeat;
+    background-size:24px;
+    background-position: center center;
+  }
+
+  .text{
+    padding:0 0 0 8px;
+    color:#6A6A6A;
+  }
+}

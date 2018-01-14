@@ -1,0 +1,12 @@
+@import "./_commonColor.scss";
+.am-checkbox .am-checkbox-inner {
+  border-color:$gray;
+}
+.am-checkbox.am-checkbox-checked .am-checkbox-inner {
+  border-color: $blue !important;
+  background-color: $blue !important;
+}
+.am-checkbox.am-checkbox-checked .am-checkbox-inner:after {
+    display: block;
+    border-color: $white;
+}

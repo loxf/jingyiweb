@@ -1,0 +1,55 @@
+@import "../../../../styles/_commonColor.scss";
+.container{
+  .item{
+    display: flex;
+    color:$mainBlack;
+    height:150px;
+    div{
+      text-align: center;
+      height:150px;
+      line-height: 150px;
+      border-bottom: solid 1PX $borderColor;
+      &:nth-child(1) {
+        width: 150px;
+        font-size: 42px;
+        color:$gray
+      }
+      &:nth-child(2) {
+        font-size: 52px;
+        flex: 1;
+        text-align: left;
+      }
+      &:nth-child(3) {
+        width: 290px;
+        font-size: 42px;
+        .tips{
+          color:$gray;
+          margin-left: 15px;
+          font-size: 38px;
+        }
+      }
+    }
+    .first{
+      font-size: 46px !important;
+      font-family: Arial !important;
+      font-weight: bold !important;
+      color:#f7ac2a !important;
+      font-style: italic;
+    }
+    .second{
+      font-size: 46px !important;
+      font-family: Arial !important;
+      font-weight: bold !important;
+      color:#b4b4b4 !important;
+      font-style: italic;
+    }
+    .third{
+      font-size: 46px !important;
+      font-family: Arial !important;
+      font-weight: bold !important;
+      color:#ba6e3c !important;
+      font-style: italic;
+    }
+
+  }
+}

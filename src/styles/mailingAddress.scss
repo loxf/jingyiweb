@@ -1,0 +1,62 @@
+@import './_commonColor.scss';
+
+.mailingAddress___3t2zr {
+  .am-checkbox-checked-1{
+    .am-checkbox-inner{
+      border-color: $blue;
+      background-color: $blue;
+      &:after{
+        display: block;
+        border-color: #fff;
+      }
+    }
+
+
+  }
+  .am-checkbox-inner {
+    border: 0.03rem solid $gray;
+    border-radius: 0 !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  .am-checkbox-inner:after {
+    top: 0.0rem;
+    left: .1rem;
+  }
+  .am-checkbox-agree {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .am-checkbox-inner {
+    display: inline-block;
+    top: 5px !important;
+  }
+
+  .read {
+    color: $gray;
+    font-size: 26px;
+
+  }
+
+  .protocol {
+    font-size: 26px;
+    color: $blue!important;
+    position: relative;
+    right: .1rem;
+  }
+
+  .am-checkbox-agree {
+    padding-top: 32px;
+  }
+
+  .am-checkbox {
+    position: relative !important;
+    display: inline-block !important;
+    width: 0.42rem !important;
+    height: 0.42rem !important;
+    bottom: 5px;
+  }
+}

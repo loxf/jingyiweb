@@ -1,0 +1,30 @@
+@import "../../../../styles/_commonColor.scss";
+.productTypeItem{
+  margin-top: 20px;
+  padding:30px 40px 0 40px;
+  background: white;
+  img{
+    width:100%;
+    display: block;
+  }
+  .bottom{
+    height:130px;
+    align-items: center;
+    display: flex;
+    div{
+      flex:1;
+      font-size: 42px;
+      color:$mainBlack;
+    }
+    button{
+      display: block;
+      height:70px;
+      border-radius: 35px;
+      border:solid 1PX $orange;
+      font-size: 32px;
+      background: transparent;
+      color:$orange;
+      outline: none;
+    }
+  }
+}

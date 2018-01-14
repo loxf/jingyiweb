@@ -1,0 +1,66 @@
+@import "../../../styles/_commonColor.scss";
+.container{
+  .commonItem{
+    margin-top: 20px;
+
+    .addressItem{
+      display: flex;
+      height:150px;
+      font-size: 46px;
+      line-height: 150px;
+      .addressContent{
+        flex: 1;
+        margin-left: 100px;
+      }
+      .addressTitle{
+        width:250px;
+      }
+    }
+  }
+
+  .buttonGroup{
+    margin-top: 60px;
+  }
+
+  .angentTips{
+    position:relative;
+    width:1000px;
+    box-sizing: border-box;
+    margin:400px auto 0 auto;
+    bottom:80px;
+    padding:50px 104px;
+    font-size: 38px;
+    color:$gray;
+    border:solid 1PX $borderColor;
+    border-radius: 20px;
+    .angentTipsTitle{
+      position:absolute;
+      width:222px;
+      height:60px;
+      border-radius: 30px;
+      color:#666666;
+      font-size: 42px;
+      left:50%;
+      margin-left: -111px;
+      top:-30px;
+      border:solid 1PX $borderColor;
+      text-align: center;
+      background: $bggray;
+    }
+    .tipsConetnt{
+    }
+    img{
+      position: absolute;
+      width:54px;
+      height:54px;
+    }
+    .leftIcon{
+      left:30px;
+      top:30px;
+    }
+    .rightIcon{
+      right:30px;
+      bottom:30px;
+    }
+  }
+}

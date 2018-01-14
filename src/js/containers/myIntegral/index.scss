@@ -1,0 +1,70 @@
+@import "../../../styles/_commonColor.scss";
+.myIntegral{
+  .headerContent{
+    height:420px;
+    background-color: $darkOrange;
+    padding:170px 100px 0 100px;
+    box-sizing: border-box;
+    .message{
+      display: flex;
+      color:white;
+      font-size: 46px;
+      align-items: center;
+      img{
+        display: block;
+        width:52px;
+        height:52px;
+        margin-right: 30px;
+      }
+      div:nth-child(2){
+        flex: 1;
+        font-size: 70px;
+        font-weight: bold;
+        margin-left: 40px;
+      }
+    }
+  }
+
+  .main{
+    padding:0 40px;
+    .mainContent{
+      position:relative;
+      top:-120px;
+      .mainItem{
+        padding:70px 30px 70px 80px;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        background-color: white;
+        .mainIcon{
+          width:160px;
+          height:160px;
+        }
+        img{
+          display: block;
+        }
+        .itemContent{
+          flex: 1;
+          margin-left: 60px;
+          div{
+            font-size: 46px;
+            color:$mainBlack
+          }
+          p{
+            font-size: 42px;
+            color:$gray;
+          }
+        }
+        .goIcon{
+          width:36px;
+          height:36px
+        }
+        .goText{
+          font-size: 46px;
+          color:$orange;
+          margin-left: 60px;
+        }
+      }
+    }
+  }
+}

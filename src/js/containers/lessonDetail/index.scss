@@ -1,0 +1,24 @@
+@import "../../../styles/_commonColor.scss";
+
+.cotainer {
+  .lessonTitle {
+    height: 116px;
+    line-height: 116px;
+    padding: 0 40px;
+    color: $mainBlack;
+    font-size: 46px;
+    background-color: white;
+  }
+
+  .teachers, .detail {
+    margin-top: 20px;
+  }
+
+  .goToExam{
+    position:fixed;
+    right:30px;
+    bottom:200px;
+    width:150px;
+    height:150px;
+  }
+}

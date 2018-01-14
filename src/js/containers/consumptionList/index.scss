@@ -1,0 +1,29 @@
+@import "../../../styles/_commonColor.scss";
+.container{
+  background: white;
+  .listTitle{
+    background: white;
+    display: flex;
+    div{
+      text-align: center;
+      height:130px;
+      line-height: 130px;
+      border-bottom: solid 1PX $borderColor;
+      font-size: 46px;
+      &:nth-child(1) {
+        width: 290px;
+      }
+      &:nth-child(2) {
+        flex: 1;
+      }
+      &:nth-child(3) {
+        width: 290px;
+      }
+    }
+  }
+  .noData{
+    padding:50px;
+    text-align: center;
+    background: #f1f0f5;
+  }
+}

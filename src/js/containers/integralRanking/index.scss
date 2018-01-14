@@ -1,0 +1,48 @@
+.intergralRanking {
+  background: white;
+  .headerContent {
+    height: 108PX;
+    background-image: url('../../../images/my/zhanghuyuerbeijing.jpg')
+  }
+  .userMessageContainer {
+    position: relative;
+    padding: 0 40px;
+    top: -50PX;
+    .userMessage {
+      display: flex;
+      height:105PX;
+      padding: 0 66px;
+      background: white;
+      color: $mainBlack;
+      box-shadow: 5px 5px 20px #cccccc;
+      align-items: center;
+      & > div {
+        margin-left: 60px;
+        div {
+          &:nth-child(1) {
+            font-size: 46px;
+          }
+          &:nth-child(2) {
+            font-size: 38px;
+            margin-top: 15px;
+          }
+        }
+        img {
+          vertical-align: middle;
+          width: 52px;
+          height: 52px;
+          margin-right: 30px;
+        }
+      }
+      & > img {
+        width: 170px;
+        height: 170px;
+        display: flex;
+      }
+    }
+  }
+  .content{
+    margin-top: -30PX;
+    padding:0 40px;
+  }
+}

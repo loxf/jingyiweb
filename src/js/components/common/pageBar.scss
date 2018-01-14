@@ -1,0 +1,38 @@
+.container {
+  height: 88px;
+  width:100%;
+  .pageBar {
+    color: black;
+    height: 88px;
+    width: 100%;
+    background: white;
+    border-bottom: solid 1PX #d0d0d0;
+    font-size: 38px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    &>div{
+      height:50px;
+      width:100%;
+      text-align: center;
+      margin-top: 20px;
+    }
+    .pageButton {
+      height: 88px;
+      width: 88px;
+      padding:20px;
+      position: absolute;;
+      left: 26px;
+      border:none;
+      background-color: transparent;
+      img{
+        width:48px;
+      }
+    }
+
+    .pageButton:active{
+      background-color: #05b2f3;
+    }
+  }
+}

@@ -1,0 +1,58 @@
+@import "../../../styles/_commonColor.scss";
+.myAccount{
+  .headerContent{
+    padding:80px 0;
+    background-image: url('../../../images/my/zhanghuyuerbeijing.jpg');
+    background-size: cover;
+    div{
+      text-align: center;
+      color:white;
+      &:nth-child(1){
+         font-size: 110px;
+       }
+      &:nth-child(2){
+        font-size: 42px;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .detail{
+    background: #fd5a48;
+    color:white;
+    box-sizing: border-box;
+    padding:20px 0;
+    .flexItem{
+      height:80px;
+      display: flex;
+      align-items: center;
+      &:nth-child(1){
+        font-size: 42px;
+      }
+      &:nth-child(2){
+        font-size: 52px;
+      }
+      div{
+        flex: 1;
+        text-align: center;
+      }
+    }
+  }
+
+  .mainItem{
+    margin-top: 20px;
+    .itemContent{
+      display: flex;
+      align-items: center;
+      font-size: 46px;
+      color:$mainBlack;
+      height:150px;
+      img{
+        display: block;
+        width:60px;
+        height:60px;
+        margin-right: 40px;
+      }
+    }
+  }
+}

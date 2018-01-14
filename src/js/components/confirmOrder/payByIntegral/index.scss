@@ -1,0 +1,41 @@
+.payByIntergral{
+  font-size: 36px;
+  color:#999999;
+  background: white;
+  margin-top: 20px;
+
+  .hide{
+    display: none;
+  }
+  .title{
+    display: flex;
+    padding:30px 40px;
+    div{
+      &:nth-child(1){
+        color:#6a5a3c;
+        flex: 1;
+      }
+    }
+    img{
+      height:56px;
+      width:56px;
+      margin-left: 80px;
+    }
+  }
+  .content{
+    display: flex;
+    align-items: center;
+    padding:10px 40px 30px 40px;
+    div{
+      flex: 1;
+    }
+    input{
+      display: block;
+      width:350px;
+      border:solid 1PX #ccc;
+      outline: none;
+      border-radius: 5px;
+      height:50px;
+    }
+  }
+}

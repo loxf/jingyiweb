@@ -1,0 +1,33 @@
+/*此处定义react的动画样式，由最下方弹出，可复用*/
+.up-and-down-enter{
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  bottom:-350px !important;
+}
+
+.up-and-down-enter-active{
+  -webkit-transform: translate3d(0, -350px, 0);
+  -moz-transform: translate3d(0, -350px, 0);
+  -ms-transform: translate3d(0, -350px, 0);
+  -o-transform: translate3d(0, -350px, 0);
+  transform: translate3d(0, -350px, 0);
+}
+
+.up-and-down-leave{-webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+  bottom: 0;
+}
+
+.up-and-down-leave-active{
+  -webkit-transform: translate3d(0, 350px, 0);
+  -moz-transform: translate3d(0, 350px, 0);
+  -ms-transform: translate3d(0, 350px, 0);
+  -o-transform: translate3d(0, 350px, 0);
+  transform: translate3d(0, 350px, 0);
+}

@@ -1,0 +1,17 @@
+@import "../../../styles/_commonColor.scss";
+.container {
+  .commonItem {
+    margin-top: 20px;
+  }
+
+  .inputItem{
+    background: white;
+    padding:0 0 0 40px;
+    border-bottom:solid 1PX $borderColor;
+  }
+
+  .buttonGroup {
+    margin-top: 60px;
+  }
+
+}

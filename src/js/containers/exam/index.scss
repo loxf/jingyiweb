@@ -1,0 +1,35 @@
+@import "../../../styles/_commonColor.scss";
+.exam{
+  height:100%;
+  width:100%;
+  background-color: white;
+  padding:80px 40px;
+  box-sizing: border-box;
+
+  .buttonGroup{
+    text-align: center;
+    vertical-align: middle;
+    position: fixed;
+    bottom:60px;
+    left:0;
+    width:100%;
+    button{
+      width:350px;
+      height:136px;
+      background-color: transparent;
+      border:solid 1PX $borderColor;
+      border-radius: 15px;
+      font-size: 52px;
+      color:$gray;
+      &:nth-child(2){
+        margin-left: 80px;
+      }
+    }
+
+    .submit{
+      background-color: $orange;
+      border:solid 1PX $orange;
+      color:white;
+    }
+  }
+}

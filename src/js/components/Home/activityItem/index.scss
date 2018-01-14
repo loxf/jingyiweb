@@ -1,0 +1,39 @@
+@import "../../../../styles/_commonColor.scss";
+.container {
+  width: 450px;
+  height:500px;
+  &>div{
+    margin-top: 20px;
+  }
+  .imgContainer {
+    width:100%;
+    border-radius: 9px;
+    overflow: hidden;
+    height:228px;
+    img{
+      width:100%;
+      display: block;
+    }
+  }
+  .title{
+    font-size: 42px;
+  }
+  .time{
+    font-size: 36px;
+    color:$gray;
+  }
+  .address{
+    display: flex;
+    align-items: center;
+    color:$gray;
+    img{
+      width:40px;
+      height:40px;
+      display: block;
+    }
+    div{
+      font-size: 38px;
+    }
+  }
+
+}

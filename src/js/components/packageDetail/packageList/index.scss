@@ -1,0 +1,55 @@
+@import "../../../../styles/_commonColor.scss";
+.container{
+  padding:0 40px;
+  color: $mainBlack;
+  font-size:46px ;
+  background-color: white;
+  border-bottom:  solid 1PX $borderColor;
+  .title{
+    height:116px;
+    line-height: 116px;
+    border-bottom: solid 1PX $borderColor;
+    background: white;
+  }
+  .item{
+    height:166px;
+    display: flex;
+    align-items: center;
+    background:white ;
+    border-bottom:  solid 1PX $borderColor;
+    &:active{
+      background: #fcfbf9;
+    }
+    .itemTitle{
+      flex: 1;
+    }
+    .tips{
+      width: 48px;
+      height:48px;
+      img{
+        width:100%;
+        height:100%;
+      }
+    }
+
+    .price{
+      margin-left: 40px;
+      color:#f54837;
+    }
+    button{
+      margin-left: 40px;
+      width:200px;
+      height: 86px;
+      border-radius: 50px;
+      border:none;
+      color:white;
+      background-color: #f54837;
+      outline: none;
+    }
+
+    &:nth-last-child(1){
+      border:none;
+    }
+  }
+
+}

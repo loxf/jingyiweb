@@ -1,0 +1,40 @@
+@import "../../../../styles/_commonColor.scss";
+.itemCanDelete{
+  width:100%;
+  position: relative;
+  height:195px;
+  overflow: hidden;
+  .itemContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: visible;
+    height:195px;
+    background: white;
+    &>div{
+      display: inline-block;
+      vertical-align: top;
+      height:100%;
+    }
+    .content {
+      width: 100%;
+      background: white;
+    }
+
+    .delete{
+      height:100%;
+      width:65PX;
+      padding:20PX 0;
+      background: $darkOrange;
+      box-sizing: border-box;
+      img{
+        width:25PX;
+        height:25PX;
+        display: block;
+        margin:auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import "../../../../styles/_commonColor.scss";
+.container{
+  display: flex;
+  height:190px;
+  align-items: center;
+  background: white;
+  img{
+    display: block;
+    width:108px;
+    height:108px;
+  }
+  &>div{
+    margin-left: 50px;
+    div:nth-child(1){
+      color:$mainBlack;
+      font-size: 46px;
+    }
+    div:nth-child(2){
+      color:$gray;
+      font-size: 42px;
+    }
+  }
+
+}

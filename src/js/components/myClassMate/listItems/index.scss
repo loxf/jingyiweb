@@ -1,0 +1,37 @@
+@import "../../../../styles/_commonColor.scss";
+
+.container {
+  .item {
+    padding:0 40px 0 0;
+    margin-left: 40px;
+    display: flex;
+    color: $mainBlack;
+    border-bottom: solid 1PX $borderColor;
+    height:180px;
+    & > div {
+      text-align: center;
+      &:nth-child(1) {
+        padding:40px 0;
+        flex: 1;
+        font-size: 42px;
+        text-align: left;
+        div {
+          height:50px;
+          line-height: 50px;
+          &:nth-child(2) {
+            color: gray;
+          }
+        }
+      }
+      &:nth-child(2) {
+        font-size: 38px;
+        flex: 1;
+        text-align: right;
+        height:175px;
+        line-height: 175px;
+        color: gray;
+      }
+    }
+
+  }
+}
