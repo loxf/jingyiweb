@@ -10,9 +10,10 @@ class ListItems extends Component {
         return this.props.data.map((item,index)=>{
             return <div className={style.item} key={index}>
                 <div>
-                    <div>{item.nickName<=9?item.nickName:item.nickName.substr(0,9)+'...'}</div>
+                    <div>{item.nickName.length<=9?item.nickName:(item.nickName.substr(0,9)+'...')}</div>
                     <div>{item.phone?item.phone:item.email}</div>
                 </div>
+                <div>{item.userLevel=='NONE'?'普通':item.userLevel}</div>
                 <div>{item.createdAt}</div>
             </div>
         });

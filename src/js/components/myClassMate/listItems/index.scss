@@ -23,7 +23,15 @@
           }
         }
       }
-      &:nth-child(2) {
+      &:nth-child(2){
+        font-size: 38px;
+        text-align: center;
+        height:175px;
+        line-height: 175px;
+        color: gray;
+        padding:0;
+      }
+      &:nth-child(3){
         font-size: 38px;
         flex: 1;
         text-align: right;

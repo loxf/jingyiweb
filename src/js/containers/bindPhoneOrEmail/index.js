@@ -47,7 +47,7 @@ class BeTheAgent extends Component {
                 }
             }
             if(this.state.currentType==1){
-                testStr=/^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/ig;
+                testStr=/^[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)*@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/ig;
                 if(!testStr.test(this.textValue)){
                     Toast.info('请输入正确的邮箱', 2);
                     return false;

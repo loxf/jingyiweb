@@ -8,7 +8,15 @@ import IconMenu from '../../components/Home/iconMenu';
 import ActivityItem from '../../components/Home/activityItem';
 import ProductItem from '../../components/Home/productItem';
 import BottomMenu from '../../components/share/bottomMenu';
-import {getInitData, getActivityData, getTypeOfLession, getProductList,userSign,getUserInfo} from '../../actions/homeAction'
+import {
+    getInitData,
+    getActivityData,
+    getTypeOfLession,
+    getProductList,
+    userSign,
+    getUserInfo,
+    scrollPosition
+} from '../../actions/homeAction'
 import {shareCallBack} from '../../actions/weixinAction'
 import cookiesOperation from '../../utils/cookiesOperation';
 import config from '../../config';
@@ -21,9 +29,9 @@ class Home extends Component {
         this.state = {
             recommendCurrent: 0,
             lessionTypesCurrent: 0,
-            showSignButton:true,
+            showSignButton: true,
         };
-       // this.checkAndDoWeixinOperation();
+        // this.checkAndDoWeixinOperation();
     }
 
 
@@ -66,7 +74,9 @@ class Home extends Component {
     //构造商品类型列表
     structLessonSlider() {
         return this.props.lessionTypes.map((item) => {
-            return <div className={style.lessonItem} key={item.catalogId} onClick={()=>{this.context.router.push(`productList?productType=${item.catalogId}`)}}>
+            return <div className={style.lessonItem} key={item.catalogId} onClick={() => {
+                this.context.router.push(`productList?productType=${item.catalogId}`)
+            }}>
                 <img src={config.imgPublicPath + item.indexPic}/>
                 <div>{item.catalogName}</div>
             </div>
@@ -74,45 +84,48 @@ class Home extends Component {
     }
 
     structLinksSlider() {
-        return this.props.initData.friendLink.map((item,index) => {
+        return this.props.initData.friendLink.map((item, index) => {
             return <a href={item.url} key={index}><img src={config.imgPublicPath + item.pic}/></a>
         });
     }
 
     //构建商品列表
     structProductList() {
-        return this.props.productList.map((item,index) => {
-            return <ProductItem key={item.offerId} imgUrl={config.imgPublicPath + item.offerPic} title={item.offerName} showVipIcon={true} freeType={item.freeType}
+        return this.props.productList.map((item, index) => {
+            return <ProductItem key={item.offerId} imgUrl={config.imgPublicPath + item.offerPic} title={item.offerName}
+                                showVipIcon={true} freeType={item.freeType}
                                 time={item.createdAt} teacher={item.teachers}
-                                count={item.playTime} onClick={()=>{this.toDetail(item.offerType,item.offerId)}}/>
+                                count={item.playTime} onClick={() => {
+                this.toDetail(item.offerType, item.offerId)
+            }}/>
         })
     }
 
     //检查初始化状态并执行微信sdk
-    checkAndDoWeixinOperation(){
-        if(sessionStorage.getItem('weixinConfigReady')=='true'){
+    checkAndDoWeixinOperation() {
+        if (sessionStorage.getItem('weixinConfigReady') == 'true') {
             this.weixinOperation();
         }
-        else{
-            document.addEventListener('weixinConfigReady',()=>{
+        else {
+            document.addEventListener('weixinConfigReady', () => {
                 this.weixinOperation();
-            },false)
+            }, false)
         }
     }
 
     //操作微信sdk
-    weixinOperation(){
+    weixinOperation() {
         wx.ready(() => {
-            let custId=cookiesOperation.getCookie('JY_CUST_ID');
+            let custId = cookiesOperation.getCookie('JY_CUST_ID');
             wx.onMenuShareTimeline({
                 title: sessionStorage.getItem('shareTitle'), // 分享标题
-                link: location.href+'?recommend='+custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                link: location.href + '?recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'https://www.jingyizaixian.com/images/share/logo.jpg', // 分享图标
-                success: ()=>{
+                success: () => {
                     this.props.dispatch(shareCallBack({
-                        detailName:'静怡雅学文化',
-                        shareObj:location.href,
-                        type:'INDEX'
+                        detailName: '静怡雅学文化',
+                        shareObj: location.href,
+                        type: 'INDEX'
                     }))
                 },
                 cancel: function () {
@@ -123,13 +136,13 @@ class Home extends Component {
             wx.onMenuShareAppMessage({
                 title: sessionStorage.getItem('shareTitle'), // 分享标题
                 desc: sessionStorage.getItem('shareDesc'), // 分享描述
-                link: location.href+'?recommend='+custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+                link: location.href + '?recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'https://www.jingyizaixian.com/images/share/logo.jpg', // 分享图标
-                success: ()=>{
+                success: () => {
                     this.props.dispatch(shareCallBack({
-                        detailName:'静怡雅学文化',
-                        shareObj:location.href,
-                        type:'INDEX'
+                        detailName: '静怡雅学文化',
+                        shareObj: location.href,
+                        type: 'INDEX'
                     }))
                 },
                 cancel: function () {
@@ -147,12 +160,19 @@ class Home extends Component {
         this.props.dispatch(getProductList({size: 5, sortType: 'HOT'}));
         this.props.dispatch(getTypeOfLession({size: 4}));
         this.props.dispatch(getUserInfo({}));
+        if (this.props.scrollPosition) {
+            window.scrollTo(0, this.props.scrollPosition);
+        }
     }
 
-    userSign(){
-        this.props.dispatch(userSign({signType:0},()=>{
+    componentWillUnmount(){
+        this.props.dispatch(scrollPosition(document.documentElement.scrollTop));
+    }
+
+    userSign() {
+        this.props.dispatch(userSign({signType: 0}, () => {
             this.setState({
-                showSignButton:false
+                showSignButton: false
             })
         }));
     }
@@ -220,18 +240,22 @@ class Home extends Component {
             }
         }];
         return <div className={style.container}>
-            {this.props.initData? <div className={style.headerContainer}>
-                {!this.props.initData.isSign&&this.state.showSignButton  ? <button className={style.signButton} onClick={()=>{this.userSign()}}>签到</button>:''}
-                <Carousel wrapAround={true}  autoplay={true}  className="my-carousel" decorators={headerSliderDecorators} afterSlide={index => {
-                    this.setState({
-                        recommendCurrent: index,
-                    })
-                }}>
+            {this.props.initData ? <div className={style.headerContainer}>
+                {!this.props.initData.isSign && this.state.showSignButton ?
+                    <button className={style.signButton} onClick={() => {
+                        this.userSign()
+                    }}>签到</button> : ''}
+                <Carousel wrapAround={true} autoplay={true} className="my-carousel" decorators={headerSliderDecorators}
+                          afterSlide={index => {
+                              this.setState({
+                                  recommendCurrent: index,
+                              })
+                          }}>
                     {this.structHeaderSlider()}
                 </Carousel>
             </div> : ''}
-            {this.props.userInfo?<IconMenu userLevel={this.props.userInfo.userLevel}/>:''}
-            {this.props.activityList&&this.props.activityList.length>0 ? <div className={style.activityContent}>
+            {this.props.userInfo ? <IconMenu userLevel={this.props.userInfo.userLevel}/> : ''}
+            {this.props.activityList && this.props.activityList.length > 0 ? <div className={style.activityContent}>
                 <div className={style.title}>
                     <div></div>
                     <div>活动</div>
@@ -272,7 +296,10 @@ class Home extends Component {
                     <div>课程</div>
                 </div>
                 {this.structProductList()}
-                <div className={style.more} onClick={()=>{this.context.router.push('/productList')}}>查看更多</div>
+                <div className={style.more} onClick={() => {
+                    this.context.router.push('/productList')
+                }}>查看更多
+                </div>
             </div> : ''}
 
             {this.props.initData ? <div className={style.links}>
@@ -301,7 +328,6 @@ class Home extends Component {
         </div>
     }
 }
-
 
 
 //使用context

@@ -1,4 +1,4 @@
-import {INIT_DATA,ACTIVITY_LIST,LESSION_TYPES,PRODUCT_LIST,USER_INFO,AREA_DATA} from '../actions/actionsTypes';
+import {INIT_DATA,ACTIVITY_LIST,LESSION_TYPES,PRODUCT_LIST,USER_INFO,AREA_DATA,SCROLL_POSITION} from '../actions/actionsTypes';
 
 export default function homeReducer(state = {}, action) {
     console.log(action.type);
@@ -15,6 +15,8 @@ export default function homeReducer(state = {}, action) {
             return Object.assign({}, state, {userInfo: action.data});
         case AREA_DATA:
             return Object.assign({}, state, {areaData: action.data});
+        case SCROLL_POSITION:
+            return Object.assign({}, state, {scrollPosition: action.data});
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import {Toast} from 'antd-mobile';
-import {INIT_DATA, ACTIVITY_LIST, PRODUCT_LIST, LESSION_TYPES,USER_INFO,AREA_DATA} from './actionsTypes'
+import {INIT_DATA, ACTIVITY_LIST, PRODUCT_LIST, LESSION_TYPES,USER_INFO,AREA_DATA,SCROLL_POSITION} from './actionsTypes'
 import commonAction from './commonAction';
 import commonService from "../services/commonService";
 
@@ -9,6 +9,7 @@ export const lessionTypes = data => ({type: LESSION_TYPES, data: data}); //课�
 export const productList = data => ({type: PRODUCT_LIST, data: data}); //商品列表
 export const userInfo = data => ({type: USER_INFO, data: data}); //商品列表
 export const areaData = data => ({type: AREA_DATA, data: data}); //地址列表
+export const scrollPosition=data=>({type: SCROLL_POSITION, data: data});//滚动条位置
 
 export const getInitData=(data,callBack)=> {
     return commonAction.simplePost(data,'api/index/init',initData,callBack);

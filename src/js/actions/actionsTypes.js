@@ -9,6 +9,7 @@ export const LESSION_TYPES = 'LESSION_TYPES';//课程类型列表
 export const PRODUCT_LIST='PRODUCT_LIST';//商品列表
 export const USER_INFO='USER_INFO';//用户信息
 export const AREA_DATA='AREA_DATA';//地址列表
+export const SCROLL_POSITION='SCROLL_POSITION';//滚动位置
 
 //奖学金相关
 export const MY_ACCOUNT_INIT='MY_ACCOUNT_INIT';//奖学金主要信息
