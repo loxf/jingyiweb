@@ -4,6 +4,7 @@ import myAccountReducer from './myAccountReducer'
 import productReducer from './productReducer'
 import myReducer from './myReducer';
 import aboutReducer from './aboutReducer';
+import examReducer from './examReducer';
 
 const rootReducer = combineReducers({
     homeInfo: homeReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     productInfo: productReducer,
     myInfo: myReducer,
     htmlInfo:aboutReducer,
+    examInfo:examReducer,
 });
 
 export default rootReducer;

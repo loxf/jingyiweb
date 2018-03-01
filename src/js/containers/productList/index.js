@@ -20,7 +20,7 @@ class ProductList extends Component {
         this.page = 1;//当前页面
         this.totalPage = 10000000;//总页面数，默认取尽量大的数，等服务端数据返回后设置为真实值
         this.currentContent = [];
-        this.urlOperation=new urlOperation();
+        this.urlOperation = new urlOperation();
     }
 
     //跳转到对应的课程和活动详情
@@ -37,7 +37,6 @@ class ProductList extends Component {
                 break;
         }
     }
-
 
 
     //构建列表主体内容,additionalData,追加的参数，clear：为true时清空原有数据重新加载
@@ -57,10 +56,12 @@ class ProductList extends Component {
                 this.setState({
                     content: <ItemList>
                         {this.currentContent.map((item, index) => {
-                            return <ProductItem showVipIcon={true} key={item.offerId} imgUrl={config.imgPublicPath + item.offerPic} freeType={item.freeType} offerType={item.offerType}
+                            return <ProductItem showVipIcon={true} key={item.offerId}
+                                                imgUrl={config.imgPublicPath + item.offerPic} freeType={item.freeType}
+                                                offerType={item.offerType}
                                                 title={item.offerName} time={item.createdAt} teacher={item.teachers}
-                                                count={item.playTime} price={item.price} onClick={()=>{
-                                                    this.toDetail(item.offerType, item.offerId)
+                                                count={item.playTime} price={item.price} onClick={() => {
+                                this.toDetail(item.offerType, item.offerId)
                             }}></ProductItem>
                         })}
                     </ItemList>
@@ -69,12 +70,16 @@ class ProductList extends Component {
         }
     }
 
+    componentWillUnmount() {
+        wx.showOptionMenu();
+    }
+
     componentDidMount() {
         //获取分类
         this.props.dispatch(getProductType({}, () => {
 
             let productType = this.urlOperation.getParameters()['productType'];
-            let productTypes=this.structProductTypeObj();
+            let productTypes = this.structProductTypeObj();
             if (productType) {
                 for (let i = 0; i < productTypes.length; i++) {
                     if (productType == productTypes[i].val) {
@@ -105,7 +110,7 @@ class ProductList extends Component {
             productTypearray.push({
                 dataname: 'catalogId',
                 val: item.catalogId,
-                text: item.catalogName,
+                text: item.catalogName.length <= 10 ? item.catalogName : (item.catalogName.substr(0, 10) + '...'),
             })
         }
         return productTypearray;
@@ -113,7 +118,12 @@ class ProductList extends Component {
 
     render() {
         return <div className={style.activityList}>
-            <TitleBar title="商品列表"/>
+            <TitleBar title="课程列表" right={{
+                img: './images/share/home.png',
+                onClick: () => {
+                    this.context.router.push('/');
+                }
+            }}/>
             <div className={style.listContent}>
                 {this.state.load ?
                     <SortList firstTab={{active: this.state.productActive, data: this.structProductTypeObj()}}

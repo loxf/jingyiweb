@@ -5,6 +5,14 @@ import ShareGuide from '../../../components/share/shareGuide';
 class BottomButton extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            show: true,
+        };
+        window.addEventListener('orientationchange', (event) => {
+            this.setState({
+                show: (window.orientation == 0),
+            });
+        });
     }
 
     static propTypes = {
@@ -54,7 +62,7 @@ class BottomButton extends Component {
     }
 
     render() {
-        return <div className={style.container}>
+        return <div  className={this.state.show ? style.container : style.hide}>
             <div className={style.fixedContainer}>
                 <ShareGuide ref="shareGuide" hideCallBack={() => {
                     window.scrollTo(0, 0)

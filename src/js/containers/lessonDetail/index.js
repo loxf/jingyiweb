@@ -13,6 +13,7 @@ import {shareCallBack} from '../../actions/weixinAction'
 import {getProductDetail, getHtml, sendVedioMessage, productDetail} from '../../actions/productAction'
 import cookiesOperation from '../../utils/cookiesOperation';
 import config from '../../config';
+import common from '../../utils/common';
 
 class LessonDetail extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class LessonDetail extends Component {
         this.urlOperation = new UrlOperation();
         this.watchId = '';
         this.interval = null;
-        this.firstPlay=true;//第一次点击播放
+        this.firstPlay = true;//第一次点击播放
     }
 
     //转换后端回传的数据格式
@@ -51,9 +52,9 @@ class LessonDetail extends Component {
     //定时发送信息
     intervalSend() {
         if (this.interval == null) {
-            if(this.firstPlay) {
+            if (this.firstPlay) {
                 this.sendVedioMessage();
-                this.firstPlay=false;
+                this.firstPlay = false;
             }
             this.interval = window.setInterval(() => {
                 this.sendVedioMessage();
@@ -77,6 +78,12 @@ class LessonDetail extends Component {
 
 
     componentDidMount() {
+        //ios用history跳转会调至jsapi的config接口授权失败，进而导致配置分享接口失败，此处只能重新刷新一次，用于避开这个坑
+        if (common.getTypeOfBrowser() == 'IOS' && sessionStorage.getItem('refresh') !== 'true') {
+            sessionStorage.setItem('refresh', 'true');
+            location.reload();
+            return;
+        }
         this.props.dispatch(getProductDetail({
             offerId: this.urlOperation.getParameters().id
         }, (resultData) => {
@@ -85,7 +92,8 @@ class LessonDetail extends Component {
             }));
 
             //this.checkAndDoWeixinOperation();
-            this.weixinOperation();
+            this.weixinOperation(resultData.data);
+            sessionStorage.setItem('refresh', 'false');
         }));
 
     }
@@ -104,17 +112,17 @@ class LessonDetail extends Component {
     }
 
 
-    weixinOperation() {
+    weixinOperation(data) {
         wx.ready(() => {
             // setTimeout(()=>{
             let custId = cookiesOperation.getCookie('JY_CUST_ID');
             wx.onMenuShareTimeline({
-                title: this.props.productDetail.offerName, // 分享标题
+                title: data.offerName, // 分享标题
                 link: location.href + '&recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: config.imgPublicPath + this.props.productDetail.pic, // 分享图标
+                imgUrl: config.imgPublicPath + data.pic, // 分享图标
                 success: () => {
                     this.props.dispatch(shareCallBack({
-                        detailName: this.props.productDetail.offerName,
+                        detailName: data.offerName,
                         shareObj: this.urlOperation.getParameters().id,
                         type: 'VIDEO'
                     }))
@@ -127,13 +135,13 @@ class LessonDetail extends Component {
             });
 
             wx.onMenuShareAppMessage({
-                title: this.props.productDetail.offerName, // 分享标题
-                desc: this.props.productDetail.offerDesc ? this.props.productDetail.offerDesc : '', // 分享描述
+                title: data.offerName, // 分享标题
+                desc: data.offerDesc ? data.offerDesc : '', // 分享描述
                 link: location.href + '&recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                imgUrl: config.imgPublicPath + this.props.productDetail.pic, // 分享图标
+                imgUrl: config.imgPublicPath + data.pic, // 分享图标
                 success: () => {
                     this.props.dispatch(shareCallBack({
-                        detailName: this.props.productDetail.offerName,
+                        detailName: data.offerName,
                         shareObj: this.urlOperation.getParameters().id,
                         type: 'VIDEO'
                     }))
@@ -148,6 +156,7 @@ class LessonDetail extends Component {
         });
     }
 
+    //通过分享进来的点击后退按钮回到首页
     detailBack() {
         if (this.urlOperation.getParameters().recommend) {
             this.context.router.replace('');
@@ -157,15 +166,24 @@ class LessonDetail extends Component {
         }
     }
 
+    //跳转到考试
+    goToExam() {
+        this.context.router.push(`exam?id=${this.urlOperation.getParameters().id}`);
+    }
+
 
     render() {
         return <div className={style.cotainer}>
             <ShareGuide ref="shareGuide"/>
-            <TitleBar title="课程详情" right={{
+            <TitleBar title="课程详情" rightArray={[{
+                img: './images/share/home.png', onClick: () => {
+                    this.context.router.push('/');
+                }
+            }, {
                 img: './images/share/fenxiang.png', onClick: () => {
                     this.refs.shareGuide.show()
                 }
-            }} back={() => {
+            }]} back={() => {
                 this.detailBack()
             }}/>
             {this.props.productDetail ? <div>
@@ -177,12 +195,13 @@ class LessonDetail extends Component {
                 }} resume={() => {
                     this.intervalSend()
                 }}/>*/}
-                <TcVedio id="lessonDetail" canPlay={this.props.productDetail.isPlay == 1} mediaType={this.props.productDetail.mediaType} mainMedia={this.props.productDetail.mainMedia}
+                <TcVedio id="lessonDetail" canPlay={this.props.productDetail.isPlay == 1}
+                         mediaType={this.props.productDetail.mediaType} mainMedia={this.props.productDetail.mainMedia}
                          coverpic={config.imgPublicPath + this.props.productDetail.pic} pause={() => {
                     this.clearInterval();
                 }} play={() => {
                     this.intervalSend()
-                }} ended={()=>{
+                }} ended={() => {
                     this.clearInterval();
                 }}/>
                 <div className={style.lessonTitle}>{this.props.productDetail.offerName}</div>
@@ -194,8 +213,9 @@ class LessonDetail extends Component {
                     <DangerousHtmlItem title="课程详情" inner={this.props.productHtml}/>
                 </div> : ''}
                 <BottomButton btns={this.structButtonArray(this.props.productDetail.btns)}/>
+
+                {this.props.productDetail.exam?<img className={style.goToExam} onClick={this.goToExam.bind(this)} src="./images/exam/kaoshi.png"/>:''}
             </div> : ''}
-            {/* <img className={style.goToExam} src="./images/exam/kaoshi.png"/>*/}
         </div>
     }
 }

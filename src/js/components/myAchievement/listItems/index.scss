@@ -20,16 +20,16 @@
           line-height: 50px;
           &:nth-child(2) {
             color: gray;
+            margin-top: 10px;
           }
         }
       }
       &:nth-child(2) {
-        font-size: 38px;
-        flex: 1;
+        font-size: 46px;
         text-align: right;
         height:175px;
         line-height: 175px;
-        color: gray;
+        color: $orange;
       }
     }
 

@@ -2,15 +2,22 @@
 .exam{
   height:100%;
   width:100%;
+  overflow:auto;
   background-color: white;
   padding:80px 40px;
   box-sizing: border-box;
 
+  .space{
+    height:256px;
+    width: 100%;
+  }
   .buttonGroup{
+    padding:60px 0;
+    background: white;
     text-align: center;
     vertical-align: middle;
     position: fixed;
-    bottom:60px;
+    bottom:0;
     left:0;
     width:100%;
     button{

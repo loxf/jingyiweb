@@ -13,7 +13,7 @@ class ProductTypeItem extends Component {
             <img src={this.props.imgUrl}/>
             <div className={style.bottom}>
                 <div>{this.props.title}</div>
-                <button>查看商品</button>
+                <button>查看课程</button>
             </div>
         </div>
     }

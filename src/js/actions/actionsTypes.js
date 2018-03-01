@@ -42,3 +42,9 @@ export const MY_BALANCE='MY_BALANCE';
 
 //富文本页面
 export const COMMON_HTML='COMMON_HTML';
+
+//考试
+export const MY_SCORE='MY_SCORE';
+export const MY_CERTIFY='MY_CERTIFY';
+export const EXAM_QUESTIONS='EXAM_QUESTIONS';
+export const EXAM_RESULT='EXAM_RESULT';

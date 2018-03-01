@@ -57,7 +57,7 @@ class TabDataList extends Component {
                 {this.structTitle()}
             </div>
             <div className={style.content}>
-                <SliderDownLoad height={this.state.contentHeight} continueCallBack={()=>{this.props.structList[this.state.active].getData()}}>
+                <SliderDownLoad height={this.state.contentHeight} background={this.props.structList[this.state.active].background} continueCallBack={()=>{this.props.structList[this.state.active].getData()}}>
                     {this.props.structList[this.state.active].content}
                 </SliderDownLoad>
          {/*       <SliderDownLoadData compent={this.props.compent}

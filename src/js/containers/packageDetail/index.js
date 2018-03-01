@@ -11,6 +11,7 @@ import BottomButton from '../../components/share/bottomButton';
 import {shareCallBack} from '../../actions/weixinAction'
 import cookiesOperation from '../../utils/cookiesOperation';
 import config from '../../config';
+import common from '../../utils/common';
 
 class PackageDetail extends Component {
     constructor(props) {
@@ -19,11 +20,18 @@ class PackageDetail extends Component {
     }
 
     componentDidMount() {
+        //ios用history跳转会调至jsapi的config接口授权失败，进而导致配置分享接口失败，此处只能重新刷新一次，用于避开这个坑
+        if(common.getTypeOfBrowser()=='IOS'&&sessionStorage.getItem('refresh')!=='true'){
+            sessionStorage.setItem('refresh','true');
+            location.reload();
+            return;
+        }
         this.props.dispatch(getPackageDetail({offerId: this.urlOperation.getParameters().id}, (result) => {
             this.props.dispatch(getHtml({
                 htmlId: result.data.htmlId
             }));
-            this.weixinOperation()
+            this.weixinOperation();
+            sessionStorage.setItem('refresh','false');
         }));
     }
 
@@ -91,11 +99,15 @@ class PackageDetail extends Component {
     render() {
         return <div className={style.container}>
             <ShareGuide ref="shareGuide"/>
-            <TitleBar title="套餐详情" right={{
+            <TitleBar title="套餐详情" rightArray={[{
+                img: './images/share/home.png', onClick: () => {
+                    this.context.router.push('/');
+                }
+            }, {
                 img: './images/share/fenxiang.png', onClick: () => {
                     this.refs.shareGuide.show()
                 }
-            }} back={()=>{this.detailBack()}}></TitleBar>
+            }]} back={()=>{this.detailBack()}}></TitleBar>
             {this.props.packageDetail?<div>
                 <img className={style.headerImg} src={config.imgPublicPath+this.props.packageDetail.pic}/>
                 <PackageList listData={this.props.packageDetail.offerList} isPlay={this.props.packageDetail.isPlay} listTitle={this.props.packageDetail.offerName}/>

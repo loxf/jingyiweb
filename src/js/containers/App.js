@@ -44,8 +44,9 @@ class App extends Component {
                     this.setWeixinConfig(config.data);
                 }
                /* else {
-                    alert(config.data.url);
-                    alert(location.href);
+                    alert('配置出错，请联系管理员');
+                    alert('配置url：'+config.data.url);
+                    alert('当前url：'+location.href);
                 }*/
             }))
         }

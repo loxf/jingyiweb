@@ -9,6 +9,7 @@ class SliderDownLoad extends Component {
 
     static propTypes = {
         height:React.PropTypes.string.isRequired,//高度
+        background:React.PropTypes.string,//背景设置
         continueCallBack:React.PropTypes.func//向下滑动回调函数
     };
 
@@ -27,7 +28,8 @@ class SliderDownLoad extends Component {
     }
 
     render(){
-        return <div className={style.sliderDownLoad} style={{height:this.props.height}} onScroll={(e)=>{this.containerScroll(e)}}>
+        let contentStyle=this.props.background?{height:this.props.height,background:this.props.background}:{height:this.props.height};
+        return <div className={style.sliderDownLoad} style={contentStyle} onScroll={(e)=>{this.containerScroll(e)}}>
             {this.props.children}
         </div>
     }

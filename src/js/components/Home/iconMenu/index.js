@@ -31,7 +31,8 @@ class IconMenu extends Component {
                 <div>课程分类</div>
             </div>}
             <div className={style.menuItem} onClick={() => {
-                this.context.router.push('share');
+                let random=Math.random()*1000;
+                this.context.router.push(`share?random=${random.toFixed(0)}`);
             }}>
                 <img src="./images/home/tuiguangfenxiang.png"/>
                 <div>推广分享</div>

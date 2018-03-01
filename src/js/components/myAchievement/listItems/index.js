@@ -10,10 +10,10 @@ class ListItems extends Component {
         return this.props.data.map((item,index)=>{
             return <div className={style.item} key={index}>
                 <div>
-                    <div>{item.nickName}</div>
-                    <div>{item.phone?item.phone:item.email}</div>
+                    <div>{item.examName}</div>
+                    <div>{item.createdAt}</div>
                 </div>
-                <div>{item.createdAt}</div>
+                <div>{item.score}分</div>
             </div>
         });
     }

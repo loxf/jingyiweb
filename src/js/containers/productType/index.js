@@ -14,7 +14,8 @@ class ProductType extends Component {
 
     structList() {
         return this.props.productTypes ? this.props.productTypes.map((item, index) => {
-            return <ProductTypeItem key={item.catalogId} title={item.catalogName} imgUrl={config.imgPublicPath + item.pic}
+            return <ProductTypeItem key={item.catalogId} title={item.catalogName}
+                                    imgUrl={config.imgPublicPath + item.pic}
                                     onClick={() => {
                                         this.context.router.push(`productList?productType=${item.catalogId}`)
                                     }}/>
@@ -31,7 +32,12 @@ class ProductType extends Component {
 
     render() {
         return <div className={style.productType}>
-            <TitleBar title="课程分类"/>
+            <TitleBar title="课程分类" right={{
+                img: './images/share/home.png',
+                onClick: () => {
+                    this.context.router.push('/');
+                }
+            }}/>
             {this.structList()}
         </div>
     }

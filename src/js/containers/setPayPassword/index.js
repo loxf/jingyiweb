@@ -69,11 +69,7 @@ class SetPayPassword extends Component {
 
     render() {
         return <div className={style.container}>
-            <TitleBar share={false} title="设置支付密码" right={{
-                img: './images/share/fangzi.png', onClick: () => {
-                    this.goHome()
-                }
-            }}/>
+            <TitleBar share={false} title="设置支付密码" />
             {this.props.userInfo ? <div className={style.commonItem}>
                 <div className={style.phone}>
                     <div>{this.props.userInfo.email ? '邮箱' : '手机号码'}</div>

@@ -81,6 +81,12 @@ class My extends Component {
                             <div>我的活动</div>
                         </div>
                     </ItemGoToSomeWhere>
+                    <ItemGoToSomeWhere>
+                        <div className={style.itemContent}  onClick={()=>{this.toUrl('myAchievement')}}>
+                            <img src="./images/my/chengjiu.png"/>
+                            <div>我的成就</div>
+                        </div>
+                    </ItemGoToSomeWhere>
                 </ItemList>
             </div>
             <BottomMenu active={2}/>

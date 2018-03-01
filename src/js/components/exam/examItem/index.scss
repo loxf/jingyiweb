@@ -1,9 +1,16 @@
 .examItem{
   font-size: 48px;
   .question{
-    margin-bottom: 85px;
+  }
+
+  .imgContainer{
+    img{
+      display: block;
+      width:100%;
+      margin:10px 0;
+    }
   }
   .answers{
-    padding:0 0 0 30px;
+    padding:85px 0 0 30px;
   }
 }
