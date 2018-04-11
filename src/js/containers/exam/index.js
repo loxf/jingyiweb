@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import style from './index.scss';
-import {getQuestions, submit} from '../../actions/examAction'
 import UrlOperation from '../../utils/urlOperation';
 import TitleBar from '../../components/share/titleBar'
 import ExamItem from '../../components/exam/examItem';
