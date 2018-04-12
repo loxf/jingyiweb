@@ -20,6 +20,7 @@ import {
 import {shareCallBack} from '../../actions/weixinAction'
 import cookiesOperation from '../../utils/cookiesOperation';
 import config from '../../config';
+import { Tabs, WhiteSpace,Toast } from 'antd-mobile';
 
 /*import LeVedio from '../../components/leVedio';*/
 class Home extends Component {
@@ -72,16 +73,16 @@ class Home extends Component {
     }
 
     //构造商品类型列表
-    structLessonSlider() {
-        return this.props.lessionTypes.map((item) => {
-            return <div className={style.lessonItem} key={item.catalogId} onClick={() => {
-                this.context.router.push(`productList?productType=${item.catalogId}`)
-            }}>
-                <img src={config.imgPublicPath + item.indexPic}/>
-                <div>{item.catalogName}</div>
-            </div>
-        })
-    }
+    // structLessonSlider() {
+    //     return this.props.lessionTypes.map((item) => {
+    //         return <div className={style.lessonItem} key={item.catalogId} onClick={() => {
+    //             this.context.router.push(`productList?productType=${item.catalogId}`)
+    //         }}>
+    //             <img src={config.imgPublicPath + item.indexPic}/>
+    //             <div>{item.catalogName}</div>
+    //         </div>
+    //     })
+    // }
 
     structLinksSlider() {
         return this.props.initData.friendLink.map((item, index) => {
@@ -122,6 +123,7 @@ class Home extends Component {
                 link: location.href + '?recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'https://www.jingyizaixian.com/images/share/logo.jpg', // 分享图标
                 success: () => {
+        
                     this.props.dispatch(shareCallBack({
                         detailName: '静怡雅学文化',
                         shareObj: location.href,
@@ -139,6 +141,7 @@ class Home extends Component {
                 link: location.href + '?recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'https://www.jingyizaixian.com/images/share/logo.jpg', // 分享图标
                 success: () => {
+        
                     this.props.dispatch(shareCallBack({
                         detailName: '静怡雅学文化',
                         shareObj: location.href,
@@ -157,8 +160,11 @@ class Home extends Component {
         this.weixinOperation();
         this.props.dispatch(getInitData({}));
         this.props.dispatch(getActivityData({page: 1, size: 4}));
-        this.props.dispatch(getProductList({size: 5, sortType: 'HOT'}));
-        this.props.dispatch(getTypeOfLession({size: 4}));
+        // this.props.dispatch(getProductList({size: 5, sortType: 'HOT'}));
+        this.props.dispatch(getTypeOfLession({size: 20},() => {
+            let lessionTypes = this.props.lessionTypes;
+            this.props.dispatch(getProductList({catalogId:lessionTypes[0].catalogId,size: 5, sortType: 'HOT'}));
+        }));
         this.props.dispatch(getUserInfo({}));
         if (this.props.scrollPosition) {
             window.scrollTo(0, this.props.scrollPosition);
@@ -176,7 +182,25 @@ class Home extends Component {
             })
         }));
     }
-
+    renderContent = tab =>{
+        return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
+            {this.props.productList ? 
+            <div className={style.productsContent}>
+                {/* <div className={style.title}>
+                    <div></div>
+                    <div>课程</div>
+                </div> */}
+                {this.structProductList()}
+                <div className={style.more} onClick={() => {
+                    this.context.router.push('/productList')
+                }}>查看更多
+                </div>
+            </div> : ''}
+        </div>
+    };
+    tabChange = (data) => {
+        this.props.dispatch(getProductList({catalogId:data.id,size: 5, sortType: 'HOT'}));
+    }
     render() {
         //头部跑马灯底部小圆圈标记配置
         let headerSliderDecorators = [{
@@ -198,27 +222,27 @@ class Home extends Component {
             position: 'BottomCenter',
         }];
         //课程分类跑马灯底部小圆圈标记配置
-        let lessonSliderDecorators = [{
-            component: () => <div></div>,
-            position: 'CenterLeft',
-            style: {
-                display: 'none'
-            }
-        }, {
-            component: () => <div></div>,
-            position: 'CenterLeft',
-            style: {
-                display: 'none'
-            }
-        }, {
-            component: () => <SliderBottom all={this.props.lessionTypes.length}
-                                           current={this.state.lessionTypesCurrent}
-                                           currentColor="#730663"></SliderBottom>,
-            position: 'BottomCenter',
-            style: {
-                bottom: '-15px'
-            }
-        }];
+        // let lessonSliderDecorators = [{
+        //     component: () => <div></div>,
+        //     position: 'CenterLeft',
+        //     style: {
+        //         display: 'none'
+        //     }
+        // }, {
+        //     component: () => <div></div>,
+        //     position: 'CenterLeft',
+        //     style: {
+        //         display: 'none'
+        //     }
+        // }, {
+        //     component: () => <SliderBottom all={this.props.lessionTypes.length}
+        //                                    current={this.state.lessionTypesCurrent}
+        //                                    currentColor="#730663"></SliderBottom>,
+        //     position: 'BottomCenter',
+        //     style: {
+        //         bottom: '-15px'
+        //     }
+        // }];
         //活动跑马灯底部小圆圈标记配置
         let activitySliderDecorators = [{
             component: () => <div></div>,
@@ -239,6 +263,13 @@ class Home extends Component {
                 display: 'none'
             }
         }];
+        let pro_tabs = this.props.lessionTypes||[];
+        let tabs = pro_tabs.map((v,i) => {
+            return {
+                title:v.catalogName,
+                id:v.catalogId
+            }
+        })
         return <div className={style.container}>
             {this.props.initData ? <div className={style.headerContainer}>
                 {!this.props.initData.isSign && this.state.showSignButton ?
@@ -270,7 +301,7 @@ class Home extends Component {
                 </div>
             </div> : ''}
 
-            {this.props.lessionTypes ? <div className={style.lessonContent}>
+            {/* {this.props.lessionTypes ? <div className={style.lessonContent}>
                 <div className={style.lessonTitle}>
                     <div className={style.title}>
                         <div></div>
@@ -288,9 +319,16 @@ class Home extends Component {
                         {this.structLessonSlider()}
                     </Carousel>
                 </div>
-            </div> : ''}
-
-            {this.props.productList ? <div className={style.productsContent}>
+            </div> : ''} */}
+            <div className={style.tabContainer}>
+                <WhiteSpace />
+                <div className={style.tabMenu}><img onClick={()=>{this.context.router.push('productList')}} className={style.tabMenuImg} src='./images/home/menu.png' /></div>
+                <Tabs onChange = {this.tabChange} tabs={tabs} renderTabBar={props => <Tabs.DefaultTabBar {...props} page={4} />}>
+                    {this.renderContent}
+                </Tabs>
+            </div>
+            {/* {this.props.productList ? 
+            <div className={style.productsContent}>
                 <div className={style.title}>
                     <div></div>
                     <div>课程</div>
@@ -300,7 +338,7 @@ class Home extends Component {
                     this.context.router.push('/productList')
                 }}>查看更多
                 </div>
-            </div> : ''}
+            </div> : ''} */}
 
             {this.props.initData ? <div className={style.links}>
                 <div className={style.title}>

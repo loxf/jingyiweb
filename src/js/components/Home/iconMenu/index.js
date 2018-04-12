@@ -22,14 +22,10 @@ class IconMenu extends Component {
                 <img src="./images/home/dailishang.png"/>
                 <div>升级代理商</div>
             </div>}*/}
-
-            {this.props.userLevel == 'NONE' ? <div className={style.menuItem}>
-                <img src="./images/home/shengjihuiyuan.png" onClick={()=>{this.context.router.push('confirmOrder?type=VIP&id=OFFER001&otherId=OFFER002')}}/>
-                <div>升级会员</div>
-            </div> : <div className={style.menuItem} onClick={()=>{this.context.router.push('productType')}}>
+            <div className={style.menuItem} onClick={()=>{this.context.router.push('productList')}}>
                 <img src="./images/home/producttype.png"/>
                 <div>课程分类</div>
-            </div>}
+            </div>
             <div className={style.menuItem} onClick={() => {
                 let random=Math.random()*1000;
                 this.context.router.push(`share?random=${random.toFixed(0)}`);
@@ -53,6 +49,28 @@ class IconMenu extends Component {
             }}>
                 <img src="./images/home/tianjiabanzhuren.png"/>
                 <div>添加班主任</div>
+            </div>
+            <div className={style.menuItem}>
+                <img src="./images/home/shengjihuiyuan.png" onClick={()=>{this.context.router.push('confirmOrder?type=VIP&id=OFFER001&otherId=OFFER002')}}/>
+                <div>升级会员</div>
+            </div>
+            <div className={style.menuItem} onClick={() => {
+                ReModal.alert('暂未开通！');
+            }}>
+                <img src="./images/home/xueguanxinwen.png"/>
+                <div>学馆新闻</div>
+            </div>
+            <div className={style.menuItem} onClick={() => {
+                ReModal.alert('暂未开通！');
+            }}>
+                <img src="./images/home/mianshoukecheng.png"/>
+                <div>面授课程</div>
+            </div>
+            <div className={style.menuItem} onClick={() => {
+                ReModal.alert('已经没有了！');
+            }}>
+                <img src="./images/home/more.png"/>
+                <div>更多</div>
             </div>
         </div>
     }

@@ -1,3 +1,15 @@
-.listContent{
-  margin-top: 20px;
+.tabContainer :global(.am-tabs-default-bar-tab-active){
+  color: #fd518a;
+}
+.tabContainer :global(.am-tabs-default-bar-underline){
+  border-color: #fd518a;
+}
+.tabContainer :global(.am-tabs-default-bar-top .am-tabs-default-bar-tab){
+  padding:0.55rem 0;
+}
+.tabContainer :global(.am-tabs-default-bar-tab){
+  font-size: 0.24rem;
+}
+.tabContainer :global(.am-whitespace.am-whitespace-md){
+  height: 0.14rem;
 }

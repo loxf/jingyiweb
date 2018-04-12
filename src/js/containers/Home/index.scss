@@ -144,10 +144,43 @@
   & > div:nth-child(1) {
     width: 9px;
     height: 56px;
-    background: $mainPurple;
+    background: #fc3074
   }
   & > div:nth-child(2) {
     font-size: 46px;
     margin-left: 30px;
   }
+}
+
+.container :global(.am-tabs-default-bar-tab-active){
+  color: #fd518a;
+}
+.container :global(.am-tabs-default-bar-underline){
+  border-color: #fd518a;
+}
+.container :global(.am-tabs-default-bar-top .am-tabs-default-bar-tab){
+  padding:0.55rem 0;
+}
+.container :global(.am-tabs-tab-bar-wrap){
+  padding-right:1rem;
+}
+.container :global(.am-tabs-default-bar-tab){
+  font-size: 0.24rem;
+}
+.container :global(.am-whitespace.am-whitespace-md){
+  height: 0.14rem;
+}
+.tabMenu {
+  width: 1rem;
+  height: 1.3rem;
+  position: absolute;
+  top: 0.14rem;
+  right: 0;
+  background-color: #fff;
+  z-index: 10;
+  box-sizing: border-box;
+  padding: 0.2rem;
+}
+.tabContainer {
+  position: relative;
 }
