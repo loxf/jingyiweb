@@ -39,7 +39,7 @@ class ProductList extends Component {
         //获取分类
         this.props.dispatch(getProductType({size: 20},() => {
             let productTypes = this.props.productTypes;
-            this.props.dispatch(getProductList({catalogId:productTypes[0].catalogId,size: 5, sortType: 'HOT'}));
+            this.props.dispatch(getProductList({catalogId:productTypes[0].catalogId,size: 1000, sortType: 'HOT'}));
         }));
         wx.ready(() => {
             wx.hideOptionMenu();
