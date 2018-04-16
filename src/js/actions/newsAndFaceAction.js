@@ -12,4 +12,8 @@ export const getNewsDetail=(data,callBack)=> {
 //获取新闻富文本介绍
 export const getHtml=(data,callBack)=> {
     return commonAction.simplePost(data,'api/html/getHtml',newsHtml,callBack);
-};
+}
+export const viewRecord=(data,callBack)=> {
+    return commonAction.simplePost(data,'/api/news/viewRecord',null,callBack);
+}
+;

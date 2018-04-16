@@ -10,10 +10,6 @@
     border-bottom: solid 1PX $borderColor;
   }
 
-  .detail{
-    margin-top: 20px;
-  }
-
   .buy{
     position:fixed;
     bottom:0;
@@ -28,4 +24,32 @@
   .space{
     height:168px;
   }
+}
+.details {
+  background-color: #fff;
+  margin-top: 32px;
+  overflow: hidden;
+  font-size: 30px;
+}
+.text {
+  margin-bottom: -56px;
+}
+.title {
+  font-size:48px;
+  text-indent: 40px;
+  color: #000;
+  margin-top: 62px;
+  margin-bottom: 45px;
+}
+.time {
+  color: #9c9598;
+  font-size:0.2rem;
+  margin-right: 10px;
+  text-indent: 40px;
+  display: inline-block;
+}
+.author {
+  color: #fd256c;
+  font-size:0.2rem;
+  display: inline-block;
 }

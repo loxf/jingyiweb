@@ -53,9 +53,11 @@ class ProductList extends Component {
     structProductType() {
         let lessionTypes = this.props.productTypes||[];
         // let lessionTypes = [{catalogName:"分类一",catalogId:"1"},{catalogName:"分类一分类一分类一分类一",catalogId:"2"},{catalogName:"分类一",catalogId:"3"},{catalogName:"分类一",id:"4"},{catalogName:"分类一",id:"5"},{catalogName:"分类一",id:"6"},{catalogName:"分类一",id:"7"},];
-        return lessionTypes.map((item, index) => {
+        let typeList = lessionTypes.map((item, index) => {
             return <div key={index} onClick={this.tabChange.bind(null,item.catalogId,index)} className={this.state.lessionTypesCurrent == index?style.tabTitleItemActive:style.tabTitleItem}>{item.catalogName}</div>
         })
+        typeList.push(<div key={typeList.length+1} onClick={this.tabChange.bind(null,"",typeList.length+1)} className={this.state.lessionTypesCurrent == typeList.length+1?style.tabTitleItemActive:style.tabTitleItem}>全部分类</div>)
+        return typeList;
     }
     //构建商品列表
     structProductList() {
@@ -76,14 +78,14 @@ class ProductList extends Component {
                         <div className={style.lessionTypeListAll}>
                             {this.structProductType()}
                         </div>
-                        <div className={style.typeBtn} onClick={this.closeTypeShow}><img src="./images/home/open_menu.png"/><span>点击收起</span></div>
+                        <div className={style.typeBtn} onClick={this.closeTypeShow}><img src="./images/home/close_menu.png"/><span>点击收起</span></div>
                     </div>
         }else{
-            if (lessionTypes.length<=3) {
+            if (lessionTypes.length<=2) {
                 return <div className={style.lessionTypeList}>
                     {this.structProductType()}
                 </div>
-            }else if (lessionTypes.length<=6) {
+            }else if (lessionTypes.length<=5) {
                 return <div className={style.lessionTypeListSix}>
                     {this.structProductType()}
                 </div>
@@ -113,13 +115,12 @@ class ProductList extends Component {
             allTypeShow:false
         })
     }
-    tabChange = (data) => {
+    tabChange = (id,index) => {
         if(index!=this.state.lessionTypesCurrent){
-            this.props.dispatch(getProductList({catalogId:data.id,size: 1000, sortType: 'HOT'}),()=>{
-                this.setState({
-                    lessionTypesCurrent:index
-                })
-            });
+            this.props.dispatch(getProductList({catalogId:id,size: 1000, sortType: 'HOT'}));
+            this.setState({
+                lessionTypesCurrent:index
+            })
         }
     }
     render() {

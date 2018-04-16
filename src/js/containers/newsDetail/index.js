@@ -5,7 +5,7 @@ import TitleBar from '../../components/share/titleBar'
 import DangerousHtmlItem from '../../components/share/dangerousHtmlItem'
 import ShareGuide from '../../components/share/shareGuide';
 import UrlOperation from '../../utils/urlOperation';
-import {getNewsDetail, getHtml, newsHtml} from '../../actions/newsAndFaceAction'
+import {getNewsDetail, getHtml, newsHtml, viewRecord} from '../../actions/newsAndFaceAction'
 import BottomButton from '../../components/share/bottomButton';
 import {shareCallBack} from '../../actions/weixinAction'
 import cookiesOperation from '../../utils/cookiesOperation';
@@ -19,6 +19,7 @@ class newsDetail extends Component {
     }
 
     componentDidMount() {
+        let _this = this;
         //ios用history跳转会调至jsapi的config接口授权失败，进而导致配置分享接口失败，此处只能重新刷新一次，用于避开这个坑
         if(common.getTypeOfBrowser()=='IOS'&&sessionStorage.getItem('refresh')!=='true'){
             sessionStorage.setItem('refresh','true');
@@ -32,8 +33,15 @@ class newsDetail extends Component {
             this.weixinOperation();
             sessionStorage.setItem('refresh','false');
         }));
+        this.t = setTimeout(function(){
+            _this.props.dispatch(viewRecord({
+                titleId: _this.urlOperation.getParameters().id
+            }));
+        },10000)
     }
-
+    componentWillUnmount() {
+        clearTimeout(this.t)
+    }
     weixinOperation(){
         wx.ready(() => {
                 let custId=cookiesOperation.getCookie('JY_CUST_ID');
@@ -100,7 +108,9 @@ class newsDetail extends Component {
                 }
             }]} back={()=>{this.detailBack()}}></TitleBar>
             {this.props.newsHtml ? <div className={style.details}>
-                <DangerousHtmlItem title={this.props.newsContent.title} inner={this.props.newsHtml}/>
+                <div className={style.title}>{this.props.newsContent.title}</div>
+                <div className={style.text}><span className={style.time}>{this.props.newsContent.createdAt}</span><span className={style.author}>{this.props.newsContent.source}</span></div>
+                <DangerousHtmlItem title="" inner={this.props.newsHtml} />
             </div> : ''}
         </div>
     }

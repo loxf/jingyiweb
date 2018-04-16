@@ -200,7 +200,7 @@ class Home extends Component {
                         <div className={style.lessionTypeListAll}>
                             {this.structProductType()}
                         </div>
-                        <div className={style.typeBtn} onClick={this.closeTypeShow}><img src="./images/home/open_menu.png"/><span>点击收起</span></div>
+                        <div className={style.typeBtn} onClick={this.closeTypeShow}><img src="./images/home/close_menu.png"/><span>点击收起</span></div>
                     </div>
         }else{
             if (lessionTypes.length<=3) {
@@ -246,11 +246,10 @@ class Home extends Component {
         //     lessionTypesCurrent:index
         // })
         if(index!=this.state.lessionTypesCurrent){
-            this.props.dispatch(getProductList({catalogId:data.id,size: 5, sortType: 'HOT'}),()=>{
-                this.setState({
-                    lessionTypesCurrent:index
-                })
-            });
+            this.props.dispatch(getProductList({catalogId:id,size: 5, sortType: 'HOT'}));
+            this.setState({
+                lessionTypesCurrent:index
+            })
         }
     }
     render() {
@@ -330,7 +329,7 @@ class Home extends Component {
                     {this.structHeaderSlider()}
                 </Carousel>
             </div> : ''}
-            {this.props.userInfo ? <IconMenu userLevel={this.props.userInfo.userLevel}/> : ''}
+            {this.props.userInfo ? <IconMenu initData={this.props.initData}  userInfo={this.props.userInfo}/> : ''}
             {this.props.activityList && this.props.activityList.length > 0 ? <div className={style.activityContent}>
                 <div className={style.title}>
                     <div></div>
