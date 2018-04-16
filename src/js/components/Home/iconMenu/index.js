@@ -63,7 +63,7 @@ class IconMenu extends Component {
                 <div>面授课程</div>
             </div>
             <div className={style.menuItem} onClick={() => {
-                ReModal.alert('已经没有了！');
+                ReModal.alert('更多功能还在开发中，敬请期待！');
             }}>
                 <img src="./images/home/more.png"/>
                 <div>更多</div>
