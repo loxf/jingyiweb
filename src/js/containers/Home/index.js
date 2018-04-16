@@ -20,7 +20,7 @@ import {
 import {shareCallBack} from '../../actions/weixinAction'
 import cookiesOperation from '../../utils/cookiesOperation';
 import config from '../../config';
-import { Tabs, WhiteSpace,Toast } from 'antd-mobile';
+// import ReModal from '../../components/common/reModal';
 
 /*import LeVedio from '../../components/leVedio';*/
 class Home extends Component {
@@ -31,6 +31,7 @@ class Home extends Component {
             recommendCurrent: 0,
             lessionTypesCurrent: 0,
             showSignButton: true,
+            allTypeShow:false
         };
         // this.checkAndDoWeixinOperation();
     }
@@ -89,7 +90,14 @@ class Home extends Component {
             return <a href={item.url} key={index}><img src={config.imgPublicPath + item.pic}/></a>
         });
     }
-
+    //构建商品类型
+    structProductType() {
+        let lessionTypes = this.props.lessionTypes||[];
+        // let lessionTypes = [{catalogName:"分类一",catalogId:"1"},{catalogName:"分类一分类一分类一分类一",catalogId:"2"},{catalogName:"分类一",catalogId:"3"},{catalogName:"分类一",id:"4"},{catalogName:"分类一",id:"5"},{catalogName:"分类一",id:"6"},{catalogName:"分类一",id:"7"},];
+        return lessionTypes.map((item, index) => {
+            return <div key={index} onClick={this.tabChange.bind(null,item.catalogId,index)} className={this.state.lessionTypesCurrent == index?style.tabTitleItemActive:style.tabTitleItem}>{item.catalogName}</div>
+        })
+    }
     //构建商品列表
     structProductList() {
         return this.props.productList.map((item, index) => {
@@ -169,6 +177,8 @@ class Home extends Component {
         if (this.props.scrollPosition) {
             window.scrollTo(0, this.props.scrollPosition);
         }
+        // ReModal.alert('已经没有了！');
+        // alert("123");
     }
 
     componentWillUnmount(){
@@ -182,24 +192,66 @@ class Home extends Component {
             })
         }));
     }
-    renderContent = tab =>{
-        return <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: '#fff' }}>
-            {this.props.productList ? 
+    renderTabTitle = () =>{
+        let lessionTypes = this.props.lessionTypes||[];
+        // let lessionTypes = [{catalogName:"分类一",catalogId:"1"},{catalogName:"分类一分类一分类一分类一",catalogId:"2"},{catalogName:"分类一",catalogId:"3"},{catalogName:"分类一",id:"4"},{catalogName:"分类一",id:"5"},{catalogName:"分类一",id:"6"},{catalogName:"分类一",id:"7"},];
+        if (this.state.allTypeShow) {
+            return  <div>
+                        <div className={style.lessionTypeListAll}>
+                            {this.structProductType()}
+                        </div>
+                        <div className={style.typeBtn} onClick={this.closeTypeShow}><img src="./images/home/open_menu.png"/><span>点击收起</span></div>
+                    </div>
+        }else{
+            if (lessionTypes.length<=3) {
+                return <div className={style.lessionTypeList}>
+                    {this.structProductType()}
+                </div>
+            }else if (lessionTypes.length<=6) {
+                return <div className={style.lessionTypeListSix}>
+                    {this.structProductType()}
+                </div>
+            }else{
+                return  <div>
+                            <div className={style.lessionTypeListSix}>
+                                {this.structProductType()}
+                            </div>
+                            <div className={style.typeBtn} onClick={this.allTypeShow}><img src="./images/home/open_menu.png"/><span>点击查看更多</span></div>
+                        </div>
+            }
+        }
+    };
+    renderContent = () =>{
+        return this.props.productList ? 
             <div className={style.productsContent}>
-                {/* <div className={style.title}>
-                    <div></div>
-                    <div>课程</div>
-                </div> */}
                 {this.structProductList()}
                 <div className={style.more} onClick={() => {
                     this.context.router.push('/productList')
                 }}>查看更多
                 </div>
-            </div> : ''}
-        </div>
+            </div> : ''
     };
-    tabChange = (data) => {
-        this.props.dispatch(getProductList({catalogId:data.id,size: 5, sortType: 'HOT'}));
+    allTypeShow = () =>{
+        this.setState({
+            allTypeShow:true
+        })
+    }
+    closeTypeShow = () => {
+        this.setState({
+            allTypeShow:false
+        })
+    }
+    tabChange = (id,index) => {
+        // this.setState({
+        //     lessionTypesCurrent:index
+        // })
+        if(index!=this.state.lessionTypesCurrent){
+            this.props.dispatch(getProductList({catalogId:data.id,size: 5, sortType: 'HOT'}),()=>{
+                this.setState({
+                    lessionTypesCurrent:index
+                })
+            });
+        }
     }
     render() {
         //头部跑马灯底部小圆圈标记配置
@@ -263,13 +315,6 @@ class Home extends Component {
                 display: 'none'
             }
         }];
-        let pro_tabs = this.props.lessionTypes||[];
-        let tabs = pro_tabs.map((v,i) => {
-            return {
-                title:v.catalogName,
-                id:v.catalogId
-            }
-        })
         return <div className={style.container}>
             {this.props.initData ? <div className={style.headerContainer}>
                 {!this.props.initData.isSign && this.state.showSignButton ?
@@ -321,11 +366,12 @@ class Home extends Component {
                 </div>
             </div> : ''} */}
             <div className={style.tabContainer}>
-                <WhiteSpace />
-                <div className={style.tabMenu}><img onClick={()=>{this.context.router.push('productList')}} className={style.tabMenuImg} src='./images/home/menu.png' /></div>
-                <Tabs onChange = {this.tabChange} tabs={tabs} renderTabBar={props => <Tabs.DefaultTabBar {...props} page={4} />}>
-                    {this.renderContent}
-                </Tabs>
+                <div className={style.tabTitle}>
+                    {this.renderTabTitle()}
+                </div>
+                <div className={style.tabContent}>
+                    {this.renderContent()}
+                </div>
             </div>
             {/* {this.props.productList ? 
             <div className={style.productsContent}>

@@ -48,3 +48,15 @@ export const MY_SCORE='MY_SCORE';
 export const MY_CERTIFY='MY_CERTIFY';
 export const EXAM_QUESTIONS='EXAM_QUESTIONS';
 export const EXAM_RESULT='EXAM_RESULT';
+
+//新闻相关
+export const NEWS_LIST='NEWS_LIST';
+export const NEWS_DETAIL='NEWS_DETAIL';
+
+//面授课程相关
+export const FACE_LIST='FACE_LIST';
+export const FACE_DETAIL='FACE_DETAIL';
+
+//面授和新闻详情
+export const NEWS_HTML='NEWS_HTML';
+export const NEWS_CONTENT='NEWS_CONTENT';

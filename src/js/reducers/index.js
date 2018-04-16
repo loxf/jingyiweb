@@ -4,13 +4,19 @@ import myAccountReducer from './myAccountReducer'
 import productReducer from './productReducer'
 import myReducer from './myReducer';
 import aboutReducer from './aboutReducer';
+import newsReducer from './newsReducer';
+import faceReducer from './faceReducer';
+import newsAndFaceReducer from './newsAndFaceReducer';
 
 const rootReducer = combineReducers({
     homeInfo: homeReducer,
     myAccountInfo: myAccountReducer,
     productInfo: productReducer,
     myInfo: myReducer,
-    htmlInfo:aboutReducer
+    htmlInfo:aboutReducer,
+    newsInfo:newsReducer,
+    faceInfo:faceReducer,
+    newsAndFaceInfo:newsAndFaceReducer
 });
 
 export default rootReducer;

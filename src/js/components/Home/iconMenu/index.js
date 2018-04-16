@@ -54,15 +54,11 @@ class IconMenu extends Component {
                 <img src="./images/home/shengjihuiyuan.png" onClick={()=>{this.context.router.push('confirmOrder?type=VIP&id=OFFER001&otherId=OFFER002')}}/>
                 <div>升级会员</div>
             </div>
-            <div className={style.menuItem} onClick={() => {
-                ReModal.alert('暂未开通！');
-            }}>
+            <div className={style.menuItem} onClick={()=>{this.context.router.push('news')}}>
                 <img src="./images/home/xueguanxinwen.png"/>
                 <div>学馆新闻</div>
             </div>
-            <div className={style.menuItem} onClick={() => {
-                ReModal.alert('暂未开通！');
-            }}>
+            <div className={style.menuItem} onClick={()=>{this.context.router.push('faceLesson')}}>
                 <img src="./images/home/mianshoukecheng.png"/>
                 <div>面授课程</div>
             </div>

@@ -40,7 +40,10 @@ import {
     About,
     Exam,
     ExamResult,
-    MyAchievement
+    MyAchievement,
+    news,
+    faceLesson,
+    newsDetail
 } from './containers/devIndex'
 
 export default (
@@ -79,6 +82,9 @@ export default (
         <Route path="exam" component={Exam}/>
         <Route path="examResult" component={ExamResult}/>
         <Route path="myAchievement" component={MyAchievement}/>
+        <Route path="news" component={news}/>
+        <Route path="faceLesson" component={faceLesson}/>
+        <Route path="newsDetail" component={newsDetail}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );
