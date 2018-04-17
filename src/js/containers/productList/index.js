@@ -54,8 +54,9 @@ class ProductList extends Component {
         });
     }
     //构建商品类型
-    structProductType() {
+    structProductType(limit) {
         let lessionTypes = this.props.productTypes||[];
+        if(limit) lessionTypes = lessionTypes.slice(0,6);
         //获取传参类型
         let productType = this.urlOperation.getParameters()['productType'];
         // let lessionTypes = [{catalogName:"分类一",catalogId:"1"},{catalogName:"分类一分类一分类一分类一",catalogId:"2"},{catalogName:"分类一",catalogId:"3"},{catalogName:"分类一",id:"4"},{catalogName:"分类一",id:"5"},{catalogName:"分类一",id:"6"},{catalogName:"分类一",id:"7"},];
@@ -66,7 +67,7 @@ class ProductList extends Component {
                 return <div key={index} onClick={this.tabChange.bind(null,item.catalogId,index)} className={this.state.lessionTypesCurrent == index?style.tabTitleItemActive:style.tabTitleItem}>{item.catalogName}</div>
             }
         })
-        typeList.push(<div key={typeList.length+1} onClick={this.tabChange.bind(null,"",typeList.length+1)} className={this.state.lessionTypesCurrent == typeList.length+1?style.tabTitleItemActive:style.tabTitleItem}>全部分类</div>)
+        if(!limit) typeList.push(<div key={typeList.length+1} onClick={this.tabChange.bind(null,"",typeList.length+1)} className={this.state.lessionTypesCurrent == typeList.length+1?style.tabTitleItemActive:style.tabTitleItem}>全部分类</div>)
         return typeList;
     }
     //构建商品列表
@@ -92,17 +93,17 @@ class ProductList extends Component {
                     </div>
         }else{
             if (lessionTypes.length<=2) {
-                return <div className={style.lessionTypeList}>
+                return <div className={style.lessionTypeListAll}>
                     {this.structProductType()}
                 </div>
             }else if (lessionTypes.length<=5) {
-                return <div className={style.lessionTypeListSix}>
+                return <div className={style.lessionTypeListAll}>
                     {this.structProductType()}
                 </div>
             }else{
                 return  <div>
-                            <div className={style.lessionTypeListSix}>
-                                {this.structProductType()}
+                            <div className={style.lessionTypeListAll}>
+                                {this.structProductType({limit:true})}
                             </div>
                             <div className={style.typeBtn} onClick={this.allTypeShow}><img src="./images/home/open_menu.png"/><span>点击查看更多</span></div>
                         </div>
@@ -110,10 +111,11 @@ class ProductList extends Component {
         }
     };
     renderContent = () =>{
-        return this.props.productList ? 
+        let productList = this.props.productList||[];
+        return productList.length>0 ? 
             <div className={style.productsContent}>
                 {this.structProductList()}
-            </div> : ''
+            </div> : <div className={style.none}>该分类暂无内容</div>
     };
     allTypeShow = () =>{
         this.setState({

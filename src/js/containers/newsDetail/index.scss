@@ -36,7 +36,7 @@
 }
 .title {
   font-size:68px;
-  padding-left:40px;
+  padding-left:80px;
   color: #000;
   margin-top: 62px;
   margin-bottom: 45px;
@@ -45,11 +45,14 @@
   color: #9c9598;
   font-size:45px;
   margin-right: 20px;
-  text-indent: 40px;
+  text-indent: 80px;
   display: inline-block;
 }
 .author {
   color: #fd256c;
   font-size:45px;
   display: inline-block;
+}
+.details>div>div{
+  border: none !important;
 }
