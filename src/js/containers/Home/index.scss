@@ -87,13 +87,22 @@
     padding: 26px 0 0 40px;
     background: white;
     border-bottom: solid 1PX $borderColor;
-    .more {
-      height: 120px;
-      line-height: 120px;
-      color: #730663;
-      font-size: 42px;
-      text-align: center;
-    }
+  }
+  .more {
+    height: 120px;
+    line-height: 120px;
+    color: #730663;
+    font-size: 42px;
+    text-align: center;
+  }
+  .none {
+    height: 120px;
+    line-height: 120px;
+    color: #000;
+    font-size: 42px;
+    text-align: center;  
+    border-top:1px solid #ccc;
+    margin-top: 20px;  
   }
 
   .links {
@@ -167,7 +176,7 @@
 }
 .lessionTypeListSix {
   margin-left: 40px;
-  height: 1.7rem;
+  height: 1.8rem;
   overflow: hidden;
 }
 .tabTitleItem {
@@ -177,7 +186,7 @@
   text-align: center;
   height: 0.5rem;
   line-height: 0.5rem;
-  border: 4px solid #fcacc8;
+  border: 0.02rem solid #fcacc8;
   margin-right: 0.2rem;
   margin-top: 0.2rem;
   font-size: 0.25rem;
@@ -195,7 +204,7 @@
   text-align: center;
   height: 0.5rem;
   line-height: 0.5rem;
-  border: 4px solid #fc266d;
+  border: 0.02rem solid #fc266d;
   margin-right: 0.2rem;
   margin-top: 0.2rem;
   font-size: 0.25rem;
@@ -207,6 +216,7 @@
 }
 .typeBtn {
   text-align: center;
+  margin-top: 0.1rem;
 }
 .typeBtn img {
   width: 0.5rem;

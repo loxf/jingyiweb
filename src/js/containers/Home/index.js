@@ -222,14 +222,15 @@ class Home extends Component {
         }
     };
     renderContent = () =>{
-        return this.props.productList ? 
+        let productList = this.props.productList||[];
+        return productList.length>0 ? 
             <div className={style.productsContent}>
                 {this.structProductList()}
-                <div className={style.more} onClick={() => {
+                {this.props.productList.length>=5?<div className={style.more} onClick={() => {
                     this.context.router.push('/productList')
                 }}>查看更多
-                </div>
-            </div> : ''
+                </div>:""}
+            </div> : <div className={style.none}>该分类暂无内容</div>
     };
     allTypeShow = () =>{
         this.setState({
@@ -246,7 +247,7 @@ class Home extends Component {
         //     lessionTypesCurrent:index
         // })
         if(index!=this.state.lessionTypesCurrent){
-            this.props.dispatch(getProductList({catalogId:id,size: 5, sortType: 'HOT'}));
+            this.props.dispatch(getProductList({catalogId:id,size: 5}));
             this.setState({
                 lessionTypesCurrent:index
             })

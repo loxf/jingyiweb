@@ -14,10 +14,11 @@ class ProductList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            lessionTypesCurrent: 0,
+            lessionTypesCurrent: -1,
             showSignButton: true,
             allTypeShow:false
         };
+        this.urlOperation = new urlOperation();
     }
 
     //跳转到对应的课程和活动详情
@@ -40,10 +41,13 @@ class ProductList extends Component {
     }
 
     componentDidMount() {
+        //获取传参类型
+        let productType = this.urlOperation.getParameters()['productType'];
         //获取分类
         this.props.dispatch(getProductType({size: 20},() => {
             let productTypes = this.props.productTypes;
-            this.props.dispatch(getProductList({catalogId:productTypes[0].catalogId,size: 1000, sortType: 'HOT'}));
+            let typeId = productType?productType:productTypes[0].catalogId;
+            this.props.dispatch(getProductList({catalogId:typeId,size: 1000}));
         }));
         wx.ready(() => {
             wx.hideOptionMenu();
@@ -52,9 +56,15 @@ class ProductList extends Component {
     //构建商品类型
     structProductType() {
         let lessionTypes = this.props.productTypes||[];
+        //获取传参类型
+        let productType = this.urlOperation.getParameters()['productType'];
         // let lessionTypes = [{catalogName:"分类一",catalogId:"1"},{catalogName:"分类一分类一分类一分类一",catalogId:"2"},{catalogName:"分类一",catalogId:"3"},{catalogName:"分类一",id:"4"},{catalogName:"分类一",id:"5"},{catalogName:"分类一",id:"6"},{catalogName:"分类一",id:"7"},];
         let typeList = lessionTypes.map((item, index) => {
-            return <div key={index} onClick={this.tabChange.bind(null,item.catalogId,index)} className={this.state.lessionTypesCurrent == index?style.tabTitleItemActive:style.tabTitleItem}>{item.catalogName}</div>
+            if(this.state.lessionTypesCurrent == -1){
+                return <div key={index} onClick={this.tabChange.bind(null,item.catalogId,index)} className={productType == item.catalogId?style.tabTitleItemActive:style.tabTitleItem}>{item.catalogName}</div>
+            }else{
+                return <div key={index} onClick={this.tabChange.bind(null,item.catalogId,index)} className={this.state.lessionTypesCurrent == index?style.tabTitleItemActive:style.tabTitleItem}>{item.catalogName}</div>
+            }
         })
         typeList.push(<div key={typeList.length+1} onClick={this.tabChange.bind(null,"",typeList.length+1)} className={this.state.lessionTypesCurrent == typeList.length+1?style.tabTitleItemActive:style.tabTitleItem}>全部分类</div>)
         return typeList;
@@ -117,7 +127,7 @@ class ProductList extends Component {
     }
     tabChange = (id,index) => {
         if(index!=this.state.lessionTypesCurrent){
-            this.props.dispatch(getProductList({catalogId:id,size: 1000, sortType: 'HOT'}));
+            this.props.dispatch(getProductList({catalogId:id,size: 1000}));
             this.setState({
                 lessionTypesCurrent:index
             })
