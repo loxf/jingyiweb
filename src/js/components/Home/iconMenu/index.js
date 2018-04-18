@@ -89,13 +89,17 @@ class IconMenu extends Component {
                 <img src={BZRSrc}/>
                 <div>添加班主任</div>
             </div>
-            {userLevel == 'NONE' ? <div className={style.menuItem}>
+            <div className={style.menuItem}>
+                <img src={VIPSrc} onClick={()=>{this.context.router.push('confirmOrder?type=VIP&id=OFFER001&otherId=OFFER002')}}/>
+                <div>会员升级</div>
+            </div>
+            {/* {userLevel == 'NONE' ? <div className={style.menuItem}>
                 <img src={VIPSrc} onClick={()=>{this.context.router.push('confirmOrder?type=VIP&id=OFFER001&otherId=OFFER002')}}/>
                 <div>会员升级</div>
             </div> : <div className={style.menuItem} onClick={()=>{this.context.router.push('beTheAgent')}}>
                 <img src={DLSSrc}/>
                 <div>升级代理商</div>
-            </div>}
+            </div>} */}
             <div className={style.menuItem} onClick={()=>{this.context.router.push('news')}}>
                 <img src={newsSrc}/>
                 <div>学馆新闻</div>

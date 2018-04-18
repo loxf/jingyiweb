@@ -53,3 +53,22 @@
     padding-left: 40px;
   }
 }
+
+.name>span {
+  display: block;
+  width: 3rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  margin-left: calc(50% - 1.5rem);
+}
+.name{
+  position: relative;
+}
+.name>img {
+  width: 0.8rem;
+  position: absolute;
+  right: calc(50% - 2.5rem);
+  top: 0;
+}

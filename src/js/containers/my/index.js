@@ -27,13 +27,22 @@ class My extends Component {
     }
 
     render() {
+        let userLevel =  this.props.myInit?this.props.myInit.userLevel:"";
+        let vipImg;
+        if (userLevel == "SVIP") {
+            vipImg = "./images/my/SVIP_03.png"
+        }else if (userLevel == "VIP") {
+            vipImg = "./images/my/VIP_03.png"
+        }else{
+            vipImg = "./images/my/SVIP_03.png"
+        }
         return <div className={style.my}>
             <TitleBar title="个人中心"/>
             {this.props.myInit? <div className={style.headerContent}>
                 <div className={style.userImg}>
                     <img src={this.props.myInit.pic} onClick={()=>{this.toUrl('userMessage')}}/>
                 </div>
-                <div className={style.name}><span>{this.props.myInit.nickName}</span><img src='' /></div>
+                <div className={style.name}><span>{this.props.myInit.nickName}</span><img src={vipImg} /></div>
                 <div className={style.phone}>{this.props.myInit.isChinese?this.props.myInit.phone:this.props.myInit.email}</div>
             </div>:''}
             <div className={style.commonItem}>
