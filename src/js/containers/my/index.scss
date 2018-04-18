@@ -6,6 +6,7 @@
     height:496px;
     background-image: url('../../../images/my/gerenzhongxin-beijing.jpg');
     background-size: cover;
+    position: relative;
     .userImg {
       margin:auto;
       width: 240px;
@@ -63,12 +64,10 @@
   text-align: center;
   margin-left: calc(50% - 1.5rem);
 }
-.name{
-  position: relative;
-}
 .name>img {
   width: 0.8rem;
   position: absolute;
   right: calc(50% - 2.5rem);
-  top: 0;
+  top: 60px;
+  left:0;
 }
