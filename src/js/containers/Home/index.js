@@ -223,12 +223,17 @@ class Home extends Component {
         }
     };
     renderContent = () =>{
+        let lessionTypes = this.props.lessionTypes;
         let productList = this.props.productList||[];
+        let currentTypeID;
+        if(lessionTypes){
+            currentTypeID = lessionTypes[this.state.lessionTypesCurrent].catalogId
+        }
         return productList.length>0 ? 
             <div className={style.productsContent}>
                 {this.structProductList()}
                 {this.props.productList.length>=5?<div className={style.more} onClick={() => {
-                    this.context.router.push('/productList')
+                    this.context.router.push(`/productList?productType=${currentTypeID}`)
                 }}>查看更多
                 </div>:""}
             </div> : <div className={style.none}>该分类暂无内容</div>
