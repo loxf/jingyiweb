@@ -290,7 +290,7 @@ class Home extends Component {
         // }, {
         //     component: () => <SliderBottom all={this.props.lessionTypes.length}
         //                                    current={this.state.lessionTypesCurrent}
-        //                                    currentColor="#730663"></SliderBottom>,
+        //                                    currentColor="#fc266d"></SliderBottom>,
         //     position: 'BottomCenter',
         //     style: {
         //         bottom: '-15px'

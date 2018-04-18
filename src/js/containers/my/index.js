@@ -33,7 +33,7 @@ class My extends Component {
                 <div className={style.userImg}>
                     <img src={this.props.myInit.pic} onClick={()=>{this.toUrl('userMessage')}}/>
                 </div>
-                <div className={style.name}>{this.props.myInit.nickName}</div>
+                <div className={style.name}><span>{this.props.myInit.nickName}</span><img src='' /></div>
                 <div className={style.phone}>{this.props.myInit.isChinese?this.props.myInit.phone:this.props.myInit.email}</div>
             </div>:''}
             <div className={style.commonItem}>
