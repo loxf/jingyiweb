@@ -1,0 +1,40 @@
+@import "../../../../styles/_commonColor.scss";
+.container{
+  font-size: 42px;
+  text-align: center;
+  color:$mainBlack;
+  .item{
+    position:relative;
+    width:100%;
+    margin:auto auto 50px auto;
+    padding:50px 50px 0 50px;
+
+    box-sizing: border-box;
+    background-color: white;
+    .image{
+      box-sizing: border-box;
+    }
+    img{
+      display: block;
+      margin:auto;
+      width:100%;
+    }
+    .certifyName{
+      padding:30px 0 40px 0;
+    }
+
+    .downLoad{
+      border:none;
+      background-color: $orange;
+      border-radius: 50px;
+      position:absolute;
+      bottom:30px;
+      right:50px;
+      width:200px;
+      height:80px;
+      line-height: 80px;
+      color:white;
+      outline: none;
+    }
+  }
+}
