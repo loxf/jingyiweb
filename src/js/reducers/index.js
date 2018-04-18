@@ -7,6 +7,7 @@ import aboutReducer from './aboutReducer';
 import newsReducer from './newsReducer';
 import faceReducer from './faceReducer';
 import newsAndFaceReducer from './newsAndFaceReducer';
+import examReducer from './examReducer';
 
 const rootReducer = combineReducers({
     homeInfo: homeReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     htmlInfo:aboutReducer,
     newsInfo:newsReducer,
     faceInfo:faceReducer,
-    newsAndFaceInfo:newsAndFaceReducer
+    newsAndFaceInfo:newsAndFaceReducer,
+    examInfo:examReducer,
 });
 
 export default rootReducer;

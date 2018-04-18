@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import style from './index.scss';
+import {getMyScore,getmyCertify} from '../../actions/examAction';
 import TitleBar from '../../components/share/titleBar';
 import TabDataList from '../../components/share/tabDataList';
 import ListItems from '../../components/myAchievement/listItems';
+import CertificateItems from '../../components/myAchievement/certificateItems';
 
 class MyAchievement extends Component {
     constructor(props) {
