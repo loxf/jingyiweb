@@ -34,7 +34,7 @@ class My extends Component {
         }else if (userLevel == "VIP") {
             vipImg = "./images/my/VIP_03.png"
         }else{
-            vipImg = "./images/my/SVIP_03.png"
+            vipImg = ""
         }
         return <div className={style.my}>
             <TitleBar title="个人中心"/>
