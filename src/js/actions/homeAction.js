@@ -19,7 +19,6 @@ export const getInitData=(data,callBack)=> {
 export const getActivityData=(data,callBack)=> {
     return commonAction.simplePost(data,'api/active/list',activityData,callBack);
 };
-
 //获取课程类型
 export const getTypeOfLession=(data,callBack)=> {
     return commonAction.simplePost(data,'api/offer/catalog',lessionTypes,callBack);

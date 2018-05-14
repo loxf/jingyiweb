@@ -17,5 +17,4 @@ const Root = ({ store, history }) => (
     <Router history={history} routes={routes} />
   </Provider>
 )
-
 export default Root

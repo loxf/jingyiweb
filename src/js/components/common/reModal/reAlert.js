@@ -164,7 +164,8 @@ class ReAlert extends Component {
             ReAlert.close&&ReAlert.close();
         }, false);
     }
-
+    componentWillUnmount(){
+    }
     //渲染关闭按钮
     renderCloseContainer(){
         return this.state.type!='onlyComponent'?<div className={style.closeContainer}>
@@ -178,21 +179,25 @@ class ReAlert extends Component {
     }
 
     render() {
-        return <div>
-            <div className={this.flexStyle()}  onClick={()=>{this.maskClick()}}>
-                <div ref="alert" className={this.alertStyle()}  onClick={this.contentClick}>
-                    {
-                        this.renderCloseContainer()
-                    }
-                    {
-                        this.renderContentByType()
-                    }
+        if(this.state.text == ""&&this.state.type == "alert"){
+            return <div></div>
+        }else{
+            return <div>
+                <div className={this.flexStyle()}  onClick={()=>{this.maskClick()}}>
+                    <div ref="alert" className={this.alertStyle()}  onClick={this.contentClick}>
+                        {
+                            this.renderCloseContainer()
+                        }
+                        {
+                            this.renderContentByType()
+                        }
+                    </div>
+                </div>
+
+                <div className={this.maskStyle()}>
                 </div>
             </div>
-
-            <div className={this.maskStyle()}>
-            </div>
-        </div>
+        }
     }
 }
 

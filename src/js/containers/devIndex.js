@@ -100,5 +100,11 @@ export {default as Share} from './share'
 export {default as About} from './about'
 
 export {default as ExamResult} from './examResult'
+//学馆新闻
+export {default as news} from './news'
+//面授课程
+export {default as faceLesson} from './faceLesson'
+//新闻及面授详情
+export {default as newsDetail} from './newsDetail'
 // 404
 export {default as NotFoundPage} from './404.js';
