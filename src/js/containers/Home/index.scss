@@ -217,3 +217,22 @@
   font-size: 0.2rem;
   letter-spacing: 0.1rem;
 }
+
+.linksContentOne :global(.slider-list) {
+  height:auto !important;
+}
+
+  .links {
+    padding: 26px 40px 40px 40px;
+    background: white;
+    margin-top: 20px;
+    .linksContentOne {
+      margin-top: 36px;
+      img {
+        display: block;
+        width: 320px;
+        height: 136px;
+        border: solid 1PX $borderColor;
+      }
+    }
+  }

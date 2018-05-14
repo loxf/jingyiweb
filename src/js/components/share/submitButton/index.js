@@ -13,7 +13,7 @@ class SubmitButton extends Component {
 
 
     render(){
-        return <button onClick={()=>{this.props.onClick&&this.props.onClick()}} className={this.props.enable==false?style.submitButton+' '+style.unable:style.submitButton}>{this.props.children}</button>
+        return <button onClick={this.props.enable==false?undefined:()=>{this.props.onClick&&this.props.onClick()}} className={this.props.enable==false?style.submitButton+' '+style.unable:style.submitButton}>{this.props.children}</button>
     }
 }
 

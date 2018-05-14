@@ -86,8 +86,9 @@ class Home extends Component {
     // }
 
     structLinksSlider() {
-        return this.props.initData.friendLink.map((item, index) => {
-            return <a href={item.url} key={index}><img src={config.imgPublicPath + item.pic}/></a>
+        let friendLink = this.props.initData.friendLink;
+        return friendLink.map((item, index) => {
+            return <a className={style.linkContent} href={item.url} key={index}><img src={config.imgPublicPath + item.pic}/></a>
         });
     }
     //构建商品类型
@@ -397,7 +398,7 @@ class Home extends Component {
                     <div></div>
                     <div>友情链接</div>
                 </div>
-                <div className={style.linksContent}>
+                <div className={this.props.initData.friendLink.length==1?style.linksContentOne:style.linksContent}>
                     <Carousel className="my-carousel" decorators={activitySliderDecorators} slidesToShow={3}>
                         {this.structLinksSlider()}
                     </Carousel>
