@@ -30,7 +30,7 @@ class Login {
             return true;
         }
         else if(location.href.indexOf('local.jingyizaixian.com')>-1){
-            location.replace(`http://test.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
+            location.replace(`http://dev.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
         }
         else {
            location.replace(`${location.protocol+'//'+location.host}/api/login?targetUrl=${encodeURIComponent(location.href)}`);

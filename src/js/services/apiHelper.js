@@ -8,7 +8,7 @@ class ApiHelper {
 
     //接口根路径
     //baseApiUrl = location.href.indexOf('https://www.jingyizaixian.com')>-1?"https://www.jingyizaixian.com/":'http://www.jingyizaixian.com/';
-    baseApiUrl=location.href.indexOf('local.jingyizaixian.com')>-1?'http://test.jingyizaixian.com/':(location.protocol + '//' + location.host+'/');
+    baseApiUrl=location.href.indexOf('local.jingyizaixian.com')>-1?'http://dev.jingyizaixian.com/':(location.protocol + '//' + location.host+'/');
 
     /**
      * 获取 HTTP 头
@@ -56,7 +56,7 @@ class ApiHelper {
                         if (data.code == "-1") {
                             //location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}${window.location.href.indexOf("local.jingyizaixian") > -1 ? '&XDebug=JY123456QWE' : ''}`);
                             if(location.href.indexOf('local.jingyizaixian.com')>-1){
-                                location.replace(`http://test.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
+                                location.replace(`http://dev.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
                             }
                             else {
                                 location.replace(`${location.protocol + '//' + location.host}/api/login?targetUrl=${encodeURIComponent(location.href)}`);

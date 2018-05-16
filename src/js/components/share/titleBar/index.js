@@ -53,9 +53,10 @@ class TitleBar extends Component {
     render() {
         return <div className={this.state.show ? style.container : style.hide}>
             <div className={style.bar}>
-                <img src="./images/share/fanhui.png" onClick={() => {
-                    this.back()
-                }}/>
+                <div onClick={() => {this.back()}} className={style.back}>
+                        <img src="./images/share/fanhui.png"/>
+                        <span>返回</span>
+                </div>
                 <div className={style.title}>{this.props.title}</div>
                 {this.renderRightButton()}
             </div>

@@ -129,7 +129,7 @@ class BindCard extends Component {
                             carNumber:value,
                         })
                     }}/>
-                    <InputItem text="持卡人" placeholder="请输入持卡人姓名" onChange={(value)=>{
+                    <InputItem text="持卡人" placeholder="清楚输入持卡人姓名" onChange={(value)=>{
                         this.setState({
                             userName:value,
                         })

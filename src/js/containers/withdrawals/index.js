@@ -35,16 +35,15 @@ class Withdrawals extends Component {
     setFull() {
         this.setState({
             money: this.props.myAccountInit.balance,
-            charge:(this.props.myAccountInit.balance*0.006).toFixed(2),
+            charge:(this.props.myAccountInit.balance*0.06).toFixed(2),
         })
     }
 
     //回到首页
     goHome(){
-        // history.pushState({},'','');
-        // let backLength=-1*(history.length-1);
-        // history.go(backLength);
-        this.context.router.push('/');
+        history.pushState({},'','');
+        let backLength=-1*(history.length-1);
+        history.go(backLength);
     }
 
     componentDidMount() {
@@ -54,10 +53,7 @@ class Withdrawals extends Component {
     }
 
     componentWillUnmount(){
-        let passwordDom = document.getElementById('withdrawalsPassword');
-        if (passwordDom) {
-            passwordDom.value='';
-        }
+        document.getElementById('withdrawalsPassword').value='';
     }
 
     submit(){
@@ -74,7 +70,7 @@ class Withdrawals extends Component {
             document.getElementById('withdrawalsPassword').value='';
             this.password='';
         },0);
-        ReModal.alert(<div className={style.password}><input id="withdrawalsPassword" type="password" placeholder="请输入提现密码" onInput={(e)=>{this.password=e.target.value}}/></div>,()=>{
+        ReModal.alert(<div className={style.password}><input id="withdrawalsPassword" ref="passwordInput" type="password" placeholder="请输入提现密码" onInput={(e)=>{this.password=e.target.value}}/></div>,()=>{
             let submitObj={
                 balance:this.state.money,
                 objId:cookiesOperation.getCookie('JY_CUST_ID'),
@@ -93,7 +89,7 @@ class Withdrawals extends Component {
 
     render() {
         return <div className={style.container}>
-            <TitleBar title="提现到微信钱包" right={{img:'./images/share/home.png',onClick:()=>{this.goHome()}}}/>
+            <TitleBar title="提现到微信钱包" right={{img:'./images/share/fangzi.png',onClick:()=>{this.goHome()}}}/>
             <div className={style.content}>
                 <div className={style.message}>提现金额（费率0.6%）</div>
                 <div className={style.input}>
@@ -106,17 +102,13 @@ class Withdrawals extends Component {
                     <a onClick={this.setFull}>全部提现</a></div>
             </div>
             <div className={style.submit}>
-                <SubmitButton enable={this.props.myAccountInit.balance>0?true:false} onClick={()=>{this.submit()}}>确认提现</SubmitButton>
+                <SubmitButton onClick={()=>{this.submit()}}>确认提现</SubmitButton>
             </div>
             <div className={style.tips}>明天24点前到账</div>
         </div>
     }
 }
 
-//使用context
-Withdrawals.contextTypes = {
-    router: React.PropTypes.object.isRequired
-};
 
 function mapStateToProps(state) {
     return Object.assign({}, state.myAccountInfo);

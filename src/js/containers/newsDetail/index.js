@@ -15,9 +15,7 @@ import common from '../../utils/common';
 class newsDetail extends Component {
     constructor(props) {
         super(props);
-        debugger;
         this.urlOperation = new UrlOperation();
-        debugger;
     }
 
     componentDidMount() {

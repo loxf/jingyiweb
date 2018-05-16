@@ -27,17 +27,16 @@ class WithdrawalsByCard extends Component {
 
     //回到首页
     goHome() {
-        // history.pushState({}, '', '');
-        // let backLength = -1 * (history.length - 1);
-        // history.go(backLength);
-        this.context.router.push('/');
+        history.pushState({}, '', '');
+        let backLength = -1 * (history.length - 1);
+        history.go(backLength);
     }
 
     //输入值改变
     inputChange(e) {
         this.setState({
             money: e.target.value,
-            charge:(e.target.value*0.006).toFixed(2)>1?(e.target.value*0.006).toFixed(2):1,
+            charge:(e.target.value*0.006).toFixed(2),
         });
     }
 
@@ -45,7 +44,7 @@ class WithdrawalsByCard extends Component {
     setFull() {
         this.setState({
             money: this.props.myAccountInit.balance,
-            charge:(this.props.myAccountInit.balance*0.006).toFixed(2)>1?(this.props.myAccountInit.balance*0.006).toFixed(2):1,
+            charge:(this.props.myAccountInit.balance*0.06).toFixed(2),
         })
     }
 
@@ -66,10 +65,7 @@ class WithdrawalsByCard extends Component {
     }
 
     componentWillUnmount(){
-        let passwordDom = document.getElementById('withdrawalsPassword');
-        if (passwordDom) {
-            passwordDom.value='';
-        }
+        document.getElementById('withdrawalsByCardPassword').value='';
     }
 
     submit(){
@@ -105,7 +101,7 @@ class WithdrawalsByCard extends Component {
 
     render() {
         return <div className={style.withdrawalsByCard}>
-            <TitleBar title="提现" right={{img:'./images/share/home.png',onClick:()=>{this.goHome()}}}/>
+            <TitleBar title="提现" share={false}/>
             <div className={style.cardItem}>
                 {this.props.currentCard ? <ItemGoToSomeWhere to={() => {
                     history.back();
@@ -125,7 +121,7 @@ class WithdrawalsByCard extends Component {
                     <a onClick={this.setFull}>全部提现</a></div>
             </div>
             <div className={style.submit}>
-                <SubmitButton enable={this.props.myAccountInit.balance>0?true:false} onClick={()=>{this.submit()}}>确认提现</SubmitButton>
+                <SubmitButton onClick={()=>{this.submit()}}>确认提现</SubmitButton>
             </div>
             <div className={style.tips}>明天24点前到账</div>
         </div>
@@ -133,10 +129,6 @@ class WithdrawalsByCard extends Component {
 }
 
 WithdrawalsByCard.defaultProps = {
-};
-//使用context
-WithdrawalsByCard.contextTypes = {
-    router: React.PropTypes.object.isRequired
 };
 
 

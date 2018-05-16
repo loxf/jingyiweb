@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import style from './index.scss';
 import ReModal from '../../../components/common/reModal';
 import ShareGuide from '../../../components/share/shareGuide';
-import config from '../../../config';
+import cookiesOperation from '../../../utils/cookiesOperation'
 
 class IconMenu extends Component {
     constructor(props) {
@@ -27,34 +27,35 @@ class IconMenu extends Component {
         let faceSrc = "./images/home/mianshoukecheng.png";
         let moreSrc = "./images/home/more.png";
         if(initData&&initData.icons.length>0){
+            let a = cookiesOperation.getCookie('PIC_SERVER_URL');
             initData.icons.map((v,i)=>{
                 switch(v.code){
                     case 'INDEX_ICON_CLASS':
-                        if(v.img!="") classSrc = config.imgPublicPath + v.img;
+                        if(v.img!="") classSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+ v.img;
                         break;
                     case 'INDEX_ICON_SHARE':
-                        if(v.img!="") shareSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") shareSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                     case 'INDEX_ICON_QR':
-                        if(v.img!="") QRSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") QRSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                     case 'INDEX_ICON_BZR':
-                        if(v.img!="") BZRSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") BZRSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                     case 'INDEX_ICON_VIP':
-                        if(v.img!="") VIPSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") VIPSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                     case 'INDEX_ICON_NEWS':
-                        if(v.img!="") newsSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") newsSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                     case 'INDEX_ICON_FACECLASS':
-                        if(v.img!="") faceSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") faceSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                     case 'INDEX_ICON_MORE':
-                        if(v.img!="") moreSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") moreSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                     case 'INDEX_ICON_DLS':
-                        if(v.img!="") DLSSrc = config.imgPublicPath +  v.img;
+                        if(v.img!="") DLSSrc = cookiesOperation.getCookie('PIC_SERVER_URL')+  v.img;
                         break;
                 }
             })
