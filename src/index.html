@@ -13,7 +13,6 @@
     <title>
         <%= htmlWebpackPlugin.options.title %>
     </title>
-
 </head>
 
 <body>
@@ -26,11 +25,18 @@
         var sdkScript = document.createElement("script");
         sdkScript.type = "text/javascript";
         if(navigator.userAgent.indexOf("MicroMessenger")>-1){
-            sdkScript.src = 'https://res.wx.qq.com/open/js/jweixin-1.0.0.js';
+            sdkScript.src = 'https://res.wx.qq.com/open/js/jweixin-1.3.2.js';
         }
         s.parentNode.insertBefore(sdkScript, s);
     })();
-
+    function ready() {
+        console.log(window.__wxjs_environment === 'miniprogram') // true
+    }
+    if (!window.WeixinJSBridge || !WeixinJSBridge.invoke) {
+        document.addEventListener('WeixinJSBridgeReady', ready, false)
+    } else {
+        ready()
+    }
   /*  window.onerror=function(errorMessage, scriptURI, lineNumber,columnNumber,errorObj) {
         /!*alert(location.href);
         alert('scriptURI:'+scriptURI);
@@ -42,7 +48,7 @@
 </script>
 <!--<script type="text/javascript" charset="utf-8" src="//yuntv.letv.com/player/vod/bcloud.js"></script>-->
 <script src="//imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer.js" charset="utf-8"></script>
-<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
 </body>
 
 </html>

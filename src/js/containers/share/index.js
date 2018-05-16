@@ -26,7 +26,7 @@ class Share extends Component {
             this.setState({
                 loading:false,
             })
-        },5000);
+        },2000);
     }
 
     weixinOperation() {
