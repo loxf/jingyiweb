@@ -28,8 +28,9 @@ class ShareGuide extends Component {
 
 
     render(){
+        let isXcx = (window.__wxjs_environment === 'miniprogram')
         return <div onClick={()=>{this.hide()}} className={this.state.show?style.shareGuide:style.hide}>
-            <img  src="./images/share/guidIcon.png"/>
+            <img  src={isXcx?"./images/share/guidIcon_xcx.png":"./images/share/guidIcon.png"}/>
         </div>
     }
 }

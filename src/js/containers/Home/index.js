@@ -259,13 +259,13 @@ class Home extends Component {
             })
         }
     }
-    jump = () => {
-        if(window.__wxjs_environment === 'miniprogram'){
-            wx.miniProgram.navigateTo({
-                url: '../pay/pay'
-            })
-        }
-    }
+    // jump = () => {
+    //     if(window.__wxjs_environment === 'miniprogram'){
+    //         wx.miniProgram.navigateTo({
+    //             url: '../pay/pay'
+    //         })
+    //     }
+    // }
     render() {
         //头部跑马灯底部小圆圈标记配置
         let headerSliderDecorators = [{
@@ -329,9 +329,9 @@ class Home extends Component {
             }
         }];
         return <div className={style.container}>
-            <div onClick={()=>{
+            {/* <div onClick={()=>{
                 this.jump()
-            }}>跳转支付</div>
+            }}>跳转支付</div> */}
             {this.props.initData ? <div className={style.headerContainer}>
                 {!this.props.initData.isSign && this.state.showSignButton ?
                     <button className={style.signButton} onClick={() => {
