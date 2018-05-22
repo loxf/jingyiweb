@@ -209,6 +209,24 @@ export default (
                 cb(null, require('./containers/myAchievement').default)
             }, 'myAchievement')
         }}/>
+
+        <Route path="news" getComponent={(nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('./containers/news').default)
+            }, 'news')
+        }}/>
+
+        <Route path="faceLesson" getComponent={(nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('./containers/faceLesson').default)
+            }, 'faceLesson')
+        }}/>
+
+        <Route path="newsDetail" getComponent={(nextState, cb) => {
+            require.ensure([], (require) => {
+                cb(null, require('./containers/newsDetail').default)
+            }, 'newsDetail')
+        }}/>
         <Route path="*" component={NotFoundPage}/>
     </Route>
 );

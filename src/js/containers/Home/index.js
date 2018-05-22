@@ -20,6 +20,7 @@ import {
 import {shareCallBack} from '../../actions/weixinAction'
 import cookiesOperation from '../../utils/cookiesOperation';
 import config from '../../config';
+// import ReModal from '../../components/common/reModal';
 
 /*import LeVedio from '../../components/leVedio';*/
 class Home extends Component {
@@ -30,6 +31,7 @@ class Home extends Component {
             recommendCurrent: 0,
             lessionTypesCurrent: 0,
             showSignButton: true,
+            allTypeShow:false
         };
         // this.checkAndDoWeixinOperation();
     }
@@ -72,23 +74,31 @@ class Home extends Component {
     }
 
     //构造商品类型列表
-    structLessonSlider() {
-        return this.props.lessionTypes.map((item) => {
-            return <div className={style.lessonItem} key={item.catalogId} onClick={() => {
-                this.context.router.push(`productList?productType=${item.catalogId}`)
-            }}>
-                <img src={config.imgPublicPath + item.indexPic}/>
-                <div>{item.catalogName}</div>
-            </div>
-        })
-    }
+    // structLessonSlider() {
+    //     return this.props.lessionTypes.map((item) => {
+    //         return <div className={style.lessonItem} key={item.catalogId} onClick={() => {
+    //             this.context.router.push(`productList?productType=${item.catalogId}`)
+    //         }}>
+    //             <img src={config.imgPublicPath + item.indexPic}/>
+    //             <div>{item.catalogName}</div>
+    //         </div>
+    //     })
+    // }
 
     structLinksSlider() {
         return this.props.initData.friendLink.map((item, index) => {
             return <a href={item.url} key={index}><img src={config.imgPublicPath + item.pic}/></a>
         });
     }
-
+    //构建商品类型
+    structProductType(limit) {
+        let lessionTypes = this.props.lessionTypes||[];
+        if(limit) lessionTypes = lessionTypes.slice(0,6);
+        // let lessionTypes = [{catalogName:"分类一",catalogId:"1"},{catalogName:"分类一分类一分类一分类一",catalogId:"2"},{catalogName:"分类一",catalogId:"3"},{catalogName:"分类一",id:"4"},{catalogName:"分类一",id:"5"},{catalogName:"分类一",id:"6"},{catalogName:"分类一",id:"7"},];
+        return lessionTypes.map((item, index) => {
+            return <div key={index} onClick={this.tabChange.bind(null,item.catalogId,index)} className={this.state.lessionTypesCurrent == index?style.tabTitleItemActive:style.tabTitleItem}>{item.catalogName}</div>
+        })
+    }
     //构建商品列表
     structProductList() {
         return this.props.productList.map((item, index) => {
@@ -122,6 +132,7 @@ class Home extends Component {
                 link: location.href + '?recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'https://www.jingyizaixian.com/images/share/logo.jpg', // 分享图标
                 success: () => {
+        
                     this.props.dispatch(shareCallBack({
                         detailName: '静怡雅学文化',
                         shareObj: location.href,
@@ -139,6 +150,7 @@ class Home extends Component {
                 link: location.href + '?recommend=' + custId, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
                 imgUrl: 'https://www.jingyizaixian.com/images/share/logo.jpg', // 分享图标
                 success: () => {
+        
                     this.props.dispatch(shareCallBack({
                         detailName: '静怡雅学文化',
                         shareObj: location.href,
@@ -157,12 +169,17 @@ class Home extends Component {
         this.weixinOperation();
         this.props.dispatch(getInitData({}));
         this.props.dispatch(getActivityData({page: 1, size: 4}));
-        this.props.dispatch(getProductList({size: 5, sortType: 'HOT'}));
-        this.props.dispatch(getTypeOfLession({size: 4}));
+        // this.props.dispatch(getProductList({size: 5, sortType: 'HOT'}));
+        this.props.dispatch(getTypeOfLession({size: 20},() => {
+            let lessionTypes = this.props.lessionTypes;
+            this.props.dispatch(getProductList({catalogId:lessionTypes[0].catalogId,size: 5, sortType: 'HOT'}));
+        }));
         this.props.dispatch(getUserInfo({}));
         if (this.props.scrollPosition) {
             window.scrollTo(0, this.props.scrollPosition);
         }
+        // ReModal.alert('已经没有了！');
+        // alert("123");
     }
 
     componentWillUnmount(){
@@ -176,7 +193,72 @@ class Home extends Component {
             })
         }));
     }
-
+    renderTabTitle = () =>{
+        let lessionTypes = this.props.lessionTypes||[];
+        // let lessionTypes = [{catalogName:"分类一",catalogId:"1"},{catalogName:"分类一分类一分类一分类一",catalogId:"2"},{catalogName:"分类一",catalogId:"3"},{catalogName:"分类一",id:"4"},{catalogName:"分类一",id:"5"},{catalogName:"分类一",id:"6"},{catalogName:"分类一",id:"7"},];
+        if (this.state.allTypeShow) {
+            return  <div>
+                        <div className={style.lessionTypeListAll}>
+                            {this.structProductType()}
+                        </div>
+                        <div className={style.typeBtn} onClick={this.closeTypeShow}><img src="./images/home/close_menu.png"/><span>点击收起</span></div>
+                    </div>
+        }else{
+            if (lessionTypes.length<=3) {
+                return <div className={style.lessionTypeListAll}>
+                    {this.structProductType()}
+                </div>
+            }else if (lessionTypes.length<=6) {
+                return <div className={style.lessionTypeListAll}>
+                    {this.structProductType()}
+                </div>
+            }else{
+                return  <div>
+                            <div className={style.lessionTypeListAll}>
+                                {this.structProductType({limit:true})}
+                            </div>
+                            <div className={style.typeBtn} onClick={this.allTypeShow}><img src="./images/home/open_menu.png"/><span>点击查看更多</span></div>
+                        </div>
+            }
+        }
+    };
+    renderContent = () =>{
+        let lessionTypes = this.props.lessionTypes;
+        let productList = this.props.productList||[];
+        let currentTypeID;
+        if(lessionTypes){
+            currentTypeID = lessionTypes[this.state.lessionTypesCurrent].catalogId
+        }
+        return productList.length>0 ? 
+            <div className={style.productsContent}>
+                {this.structProductList()}
+                {this.props.productList.length>=5?<div className={style.more} onClick={() => {
+                    this.context.router.push(`/productList?productType=${currentTypeID}`)
+                }}>查看更多
+                </div>:""}
+            </div> : <div className={style.none}>该分类暂无内容</div>
+    };
+    allTypeShow = () =>{
+        this.setState({
+            allTypeShow:true
+        })
+    }
+    closeTypeShow = () => {
+        this.setState({
+            allTypeShow:false
+        })
+    }
+    tabChange = (id,index) => {
+        // this.setState({
+        //     lessionTypesCurrent:index
+        // })
+        if(index!=this.state.lessionTypesCurrent){
+            this.props.dispatch(getProductList({catalogId:id,size: 5}));
+            this.setState({
+                lessionTypesCurrent:index
+            })
+        }
+    }
     render() {
         //头部跑马灯底部小圆圈标记配置
         let headerSliderDecorators = [{
@@ -198,27 +280,27 @@ class Home extends Component {
             position: 'BottomCenter',
         }];
         //课程分类跑马灯底部小圆圈标记配置
-        let lessonSliderDecorators = [{
-            component: () => <div></div>,
-            position: 'CenterLeft',
-            style: {
-                display: 'none'
-            }
-        }, {
-            component: () => <div></div>,
-            position: 'CenterLeft',
-            style: {
-                display: 'none'
-            }
-        }, {
-            component: () => <SliderBottom all={this.props.lessionTypes.length}
-                                           current={this.state.lessionTypesCurrent}
-                                           currentColor="#730663"></SliderBottom>,
-            position: 'BottomCenter',
-            style: {
-                bottom: '-15px'
-            }
-        }];
+        // let lessonSliderDecorators = [{
+        //     component: () => <div></div>,
+        //     position: 'CenterLeft',
+        //     style: {
+        //         display: 'none'
+        //     }
+        // }, {
+        //     component: () => <div></div>,
+        //     position: 'CenterLeft',
+        //     style: {
+        //         display: 'none'
+        //     }
+        // }, {
+        //     component: () => <SliderBottom all={this.props.lessionTypes.length}
+        //                                    current={this.state.lessionTypesCurrent}
+        //                                    currentColor="#fc266d"></SliderBottom>,
+        //     position: 'BottomCenter',
+        //     style: {
+        //         bottom: '-15px'
+        //     }
+        // }];
         //活动跑马灯底部小圆圈标记配置
         let activitySliderDecorators = [{
             component: () => <div></div>,
@@ -254,7 +336,7 @@ class Home extends Component {
                     {this.structHeaderSlider()}
                 </Carousel>
             </div> : ''}
-            {this.props.userInfo ? <IconMenu userLevel={this.props.userInfo.userLevel}/> : ''}
+            {this.props.userInfo ? <IconMenu initData={this.props.initData}  userInfo={this.props.userInfo}/> : ''}
             {this.props.activityList && this.props.activityList.length > 0 ? <div className={style.activityContent}>
                 <div className={style.title}>
                     <div></div>
@@ -270,7 +352,7 @@ class Home extends Component {
                 </div>
             </div> : ''}
 
-            {this.props.lessionTypes ? <div className={style.lessonContent}>
+            {/* {this.props.lessionTypes ? <div className={style.lessonContent}>
                 <div className={style.lessonTitle}>
                     <div className={style.title}>
                         <div></div>
@@ -288,9 +370,17 @@ class Home extends Component {
                         {this.structLessonSlider()}
                     </Carousel>
                 </div>
-            </div> : ''}
-
-            {this.props.productList ? <div className={style.productsContent}>
+            </div> : ''} */}
+            <div className={style.tabContainer}>
+                <div className={style.tabTitle}>
+                    {this.renderTabTitle()}
+                </div>
+                <div className={style.tabContent}>
+                    {this.renderContent()}
+                </div>
+            </div>
+            {/* {this.props.productList ? 
+            <div className={style.productsContent}>
                 <div className={style.title}>
                     <div></div>
                     <div>课程</div>
@@ -300,7 +390,7 @@ class Home extends Component {
                     this.context.router.push('/productList')
                 }}>查看更多
                 </div>
-            </div> : ''}
+            </div> : ''} */}
 
             {this.props.initData ? <div className={style.links}>
                 <div className={style.title}>
