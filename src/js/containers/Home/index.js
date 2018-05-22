@@ -260,10 +260,9 @@ class Home extends Component {
         }
     }
     // jump = () => {
+    //     debugger;
     //     if(window.__wxjs_environment === 'miniprogram'){
-    //         wx.miniProgram.navigateTo({
-    //             url: '../pay/pay'
-    //         })
+    //         wx.miniProgram.postMessage({ data: {msg: '我是网页' }});
     //     }
     // }
     render() {

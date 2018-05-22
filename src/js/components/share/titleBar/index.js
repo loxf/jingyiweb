@@ -4,8 +4,13 @@ import style from './index.scss';
 class TitleBar extends Component {
     constructor(props) {
         super(props);
+        let isShow = true;
+        if(window.__wxjs_environment === 'miniprogram') {
+            document.title = props.title;
+            isShow=false;
+        }
         this.state = {
-            show: true,
+            show: isShow,
         };
         window.addEventListener('orientationchange', (event) => {
             this.setState({
@@ -21,7 +26,11 @@ class TitleBar extends Component {
         rightText: React.PropTypes.object,//右侧文字按钮，text:文字，onClick:点击事件
         back: React.PropTypes.func,//自定义后退事件
     };
-
+    componentWillUnmount(){
+        if(window.__wxjs_environment === 'miniprogram') {
+            document.title = "静怡雅学文化"
+        }
+    }
     //渲染右侧按钮
     renderRightButton() {
         if (this.props.right) {

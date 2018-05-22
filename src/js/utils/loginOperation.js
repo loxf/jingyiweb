@@ -5,13 +5,13 @@
  * Created by 小敏哥 on 2017/4/10.
  */
 import cookiesOperation from './cookiesOperation';
-
+import commonService from "../services/commonService";
+import UrlOperation from './urlOperation';
+import {Toast} from 'antd-mobile';
 class Login {
     constructor() {
 
     }
-
-
     //获取当前时间与缓存用户信息时间差
     getSbuDays(localDateString) {
         let now = new Date();
@@ -21,28 +21,35 @@ class Login {
     }
 
     //单点登录
-    _singleSignOn() {
-        if (location.host.indexOf("localhost") > -1) {
-            location.replace('http://local.jingyizaixian.com');
-        }
-        //从cookies读取数据
-        else if (cookiesOperation.getCookie('JY_TOKEN') ) {
-            return true;
-        }
-        else if(location.href.indexOf('local.jingyizaixian.com')>-1){
-            location.replace(`http://dev.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
-        }
-        else {
-           location.replace(`${location.protocol+'//'+location.host}/api/login?targetUrl=${encodeURIComponent(location.href)}`);
-           /* location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}${'&XDebug=JY123456QWE'}`);*/
-            //location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
-            return false;
+    _singleSignOn(callBack) {
+        // alert("==============sigin");
+        if (cookiesOperation.getCookie('JY_TOKEN') ) {
+            callBack();
+        }else{
+            if(window.__wxjs_environment === 'miniprogram'){
+                let urlOperation = new UrlOperation();
+                let token = urlOperation.getParameters().token;
+                location.replace(`http://dev.jingyizaixian.com/api/loginByXcxTmpToken?targetUrl=http://local.jingyizaixian.com&token=`+token);
+            }else {
+                if (location.host.indexOf("localhost") > -1) {
+                    location.replace('http://local.jingyizaixian.com');
+                }
+                //从cookies读取数据
+                else if(location.href.indexOf('local.jingyizaixian.com')>-1){
+                    location.replace(`http://dev.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
+                }
+                else {
+                   location.replace(`${location.protocol+'//'+location.host}/api/login?targetUrl=${encodeURIComponent(location.href)}`);
+                   /* location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}${'&XDebug=JY123456QWE'}`);*/
+                    //location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
+                }
+            }
         }
     }
 
 
     loginOperation(callBack) {
-        this._singleSignOn() && callBack();
+        this._singleSignOn(callBack);
     }
 }
 

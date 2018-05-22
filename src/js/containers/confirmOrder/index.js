@@ -27,7 +27,11 @@ class ConfirmOrder extends Component {
         };
         this.password = '';//支付密码
         this.urlOperation = new UrlOperation();
-        this.payType = '1';
+        if(window.__wxjs_environment === 'miniprogram'){
+            this.payType = '5';
+        }else{
+            this.payType = '1';
+        }
     }
 
     //初始化订单
@@ -63,9 +67,12 @@ class ConfirmOrder extends Component {
     }
 
     setPayType(index) {
-        this.payType = index == 0 ? 3 : 1;
+        if(window.__wxjs_environment === 'miniprogram'){
+            this.payType = index == 0 ? 3 : 5;
+        }else{
+            this.payType = index == 0 ? 3 : 1;
+        }
     }
-
 
     submit() {
         if (this.props.confirmOrderDetail.attrList && (!this.state.userName || !this.state.userPhone)) {
@@ -128,21 +135,31 @@ class ConfirmOrder extends Component {
                 },{clickClose:false})
             }
             else {
-                WeixinJSBridge.invoke(
-                    'getBrandWCPayRequest', {
-                        "appId": result.data.appId,     //公众号名称，由商户传入
-                        "timeStamp": result.data.timeStamp,         //时间戳，自1970年以来的秒数
-                        "nonceStr": result.data.nonceStr, //随机串
-                        "package": result.data.package,
-                        "signType": result.data.signType,         //微信签名方式：
-                        "paySign": result.data.paySign //微信签名
-                    },
-                    function (res) {
-                        if (res.err_msg == "get_brand_wcpay_request:ok") {
-                            history.back();
-                        }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                if(window.__wxjs_environment === 'miniprogram'){
+                    let packageText;
+                    if(result.data.package){
+                        packageText = result.data.package.replace(/=/, "-");
                     }
-                );
+                    wx.miniProgram.navigateTo({
+                        url: '../pay/pay?timeStamp='+result.data.timeStamp+'&nonceStr='+result.data.nonceStr+'&package='+packageText+'&signType='+result.data.signType+'&paySign='+result.data.paySign
+                    })
+                }else{
+                    WeixinJSBridge.invoke(
+                        'getBrandWCPayRequest', {
+                            "appId": result.data.appId,     //公众号名称，由商户传入
+                            "timeStamp": result.data.timeStamp,         //时间戳，自1970年以来的秒数
+                            "nonceStr": result.data.nonceStr, //随机串
+                            "package": result.data.package,
+                            "signType": result.data.signType,         //微信签名方式：
+                            "paySign": result.data.paySign //微信签名
+                        },
+                        function (res) {
+                            if (res.err_msg == "get_brand_wcpay_request:ok") {
+                                history.back();
+                            }     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                        }
+                    );
+                }
                 /*wx.chooseWXPay({
 
                     timestamp: result.data.timeStamp,// 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符

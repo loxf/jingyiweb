@@ -82,7 +82,8 @@ class BeTheAgent extends Component {
                     isChinese: (this.state.currentType + 1),
                     phone: this.state.currentType == 1 ? '' : this.textValue,
                     realName: this.realName,
-                    verifyCode: this.msgCode
+                    verifyCode: this.msgCode,
+                    loginType:window.__wxjs_environment === 'miniprogram'?"XCX":"WX"
                 }, () => {
                     Toast.info('绑定成功', 2);
                     setTimeout(() => {

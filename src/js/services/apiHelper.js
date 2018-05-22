@@ -54,13 +54,19 @@ class ApiHelper {
                     let resp = response.json();
                     resp.then(function (data) {
                         if (data.code == "-1") {
+                            // alert("=====================22222222222"+data.code);
                             //location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}${window.location.href.indexOf("local.jingyizaixian") > -1 ? '&XDebug=JY123456QWE' : ''}`);
-                            if(location.href.indexOf('local.jingyizaixian.com')>-1){
-                                location.replace(`http://dev.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
-                            }
-                            else {
-                                location.replace(`${location.protocol + '//' + location.host}/api/login?targetUrl=${encodeURIComponent(location.href)}`);
-                            }
+                            if(window.__wxjs_environment === 'miniprogram'){
+                                wx.miniProgram.navigateTo({
+                                    url: '../index/index'
+                                })    
+                            }else{
+                                if(location.href.indexOf('local.jingyizaixian.com')>-1){
+                                    location.replace(`http://dev.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}&XDebug=JY123456QWE`);
+                                }else {
+                                    location.replace(`${location.protocol + '//' + location.host}/api/login?targetUrl=${encodeURIComponent(location.href)}`);
+                                }
+                            } 
                         }
                     });
                     return resp;
