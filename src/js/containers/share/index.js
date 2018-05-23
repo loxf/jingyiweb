@@ -72,15 +72,21 @@ class Share extends Component {
              });
          });*/
     }
-
     render() {
         return this.state.loading ? <div className={style.loading}>
             <img src="./images/share/loading.gif"/>
             <div>请长按图片下载后分享</div>
         </div> : <div className={style.container}>
             <img src={this.state.url}/>
+            <div className={style.home} onClick={() => {
+                    this.context.router.push('/');
+                }}><img src="./images/share/shareHome.png"/></div>
         </div>
     }
 }
+//使用context
+Share.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default connect()(Share)

@@ -10,7 +10,7 @@ import UrlOperation from './urlOperation';
 import {Toast} from 'antd-mobile';
 class Login {
     constructor() {
-
+        this.urlOperation=new UrlOperation();
     }
     //获取当前时间与缓存用户信息时间差
     getSbuDays(localDateString) {
@@ -26,10 +26,11 @@ class Login {
         if (cookiesOperation.getCookie('JY_TOKEN') ) {
             callBack();
         }else{
-            if(window.__wxjs_environment === 'miniprogram'){
-                let urlOperation = new UrlOperation();
-                let token = urlOperation.getParameters().token;
-                location.replace(`http://dev.jingyizaixian.com/api/loginByXcxTmpToken?targetUrl=http://local.jingyizaixian.com&token=`+token);
+            global.env = this.urlOperation.getParameters().env;
+            if(global.env === 'XCX'||window.__wxjs_environment === 'miniprogram'){
+                wx.miniProgram.reLaunch({
+                    url: '../index/index?validate=no'
+                })
             }else {
                 if (location.host.indexOf("localhost") > -1) {
                     location.replace('http://local.jingyizaixian.com');

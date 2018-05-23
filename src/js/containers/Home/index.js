@@ -260,9 +260,14 @@ class Home extends Component {
         }
     }
     // jump = () => {
-    //     debugger;
-    //     if(window.__wxjs_environment === 'miniprogram'){
-    //         wx.miniProgram.postMessage({ data: {msg: '我是网页' }});
+    //     // debugger;
+    //     // if(window.__wxjs_environment === 'miniprogram'){
+    //     //     wx.miniProgram.postMessage({ data: {msg: '我是网页' }});
+    //     // }
+    //     if(window.__wxjs_environment === 'miniprogram'||global.env === 'XCX'){
+    //         wx.miniProgram.reLaunch({
+    //             url: '../index/index?validate=false'
+    //         })    
     //     }
     // }
     render() {

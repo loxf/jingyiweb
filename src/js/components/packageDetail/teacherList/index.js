@@ -6,14 +6,19 @@ class TeacherList extends Component {
     constructor(props) {
         super(props);
     }
-
+    renderTitle = (title) => {
+        let titleArr = title.split(",");
+        return titleArr.map((v,i)=>{
+            return <div className={style.position}>{v}</div>
+        })
+    }
     structTeacherList(){
         return this.props.teachers.map((item,index)=>{
             return <div className={style.teacherItem} key={index}>
                 <img src={config.imgPublicPath+item.pic}/>
                 <div className={style.message}>
                     <div className={style.name}>{item.name}</div>
-                    <div className={style.position}>{item.title}</div>
+                    {this.renderTitle(item.title)}
                 </div>
             </div>
         })

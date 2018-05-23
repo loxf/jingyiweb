@@ -54,11 +54,10 @@ class ApiHelper {
                     let resp = response.json();
                     resp.then(function (data) {
                         if (data.code == "-1") {
-                            // alert("=====================22222222222"+data.code);
                             //location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}${window.location.href.indexOf("local.jingyizaixian") > -1 ? '&XDebug=JY123456QWE' : ''}`);
-                            if(window.__wxjs_environment === 'miniprogram'){
-                                wx.miniProgram.navigateTo({
-                                    url: '../index/index'
+                            if(window.__wxjs_environment === 'miniprogram'||global.env === 'XCX'){
+                                wx.miniProgram.reLaunch({
+                                    url: '../index/index?validate=no'
                                 })    
                             }else{
                                 if(location.href.indexOf('local.jingyizaixian.com')>-1){
