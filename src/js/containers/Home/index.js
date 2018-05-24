@@ -406,7 +406,7 @@ class Home extends Component {
                 </div>
             </div> : ''} */}
 
-            {this.props.initData ? <div className={style.links}>
+            {(this.props.initData&&window.__wxjs_environment !== 'miniprogram') ? <div className={style.links}>
                 <div className={style.title}>
                     <div></div>
                     <div>友情链接</div>
