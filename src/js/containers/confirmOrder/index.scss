@@ -56,3 +56,12 @@
     text-align: center;
   }
 }
+
+.mask {
+  position: absolute;
+  background-color: rgba(36, 36, 36, 0.2);
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}

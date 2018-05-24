@@ -8,7 +8,7 @@ import UrlOperation from '../../utils/urlOperation';
 import SubmitButton from '../../components/share/submitButton';
 import {connect} from "react-redux";
 import {getMyBalance} from '../../actions/myAccountAction'
-import {createOrder, initOrder, payOrder} from '../../actions/productAction'
+import {createOrder, initOrder, payOrder, queryOrder} from '../../actions/productAction'
 import {Toast} from 'antd-mobile';
 import md5 from 'js-md5'
 import ReModal from '../../components/common/reModal';
@@ -24,6 +24,7 @@ class ConfirmOrder extends Component {
             userPhone: '',
             useIntegralCount: 0,//使用的积分
             useIntegral: false,
+            maskShow:false
         };
         this.password = '';//支付密码
         this.urlOperation = new UrlOperation();
@@ -75,6 +76,7 @@ class ConfirmOrder extends Component {
     }
 
     submit() {
+        let _this = this;
         if (this.props.confirmOrderDetail.attrList && (!this.state.userName || !this.state.userPhone)) {
             Toast.info('请填写参与人姓名和联系电话',2);
             return;
@@ -135,13 +137,43 @@ class ConfirmOrder extends Component {
                 },{clickClose:false})
             }
             else {
-                if(window.__wxjs_environment === 'miniprogram'){
+                if(global.env === 'XCX'||window.__wxjs_environment === 'miniprogram'){
                     let packageText;
                     if(result.data.package){
                         packageText = result.data.package.replace(/=/, "-");
                     }
+                    let time = setInterval(function(){
+                        _this.props.dispatch(queryOrder({orderId:result.data.orderId}, (data) => {
+                            if(data.data.status == 3){
+                                clearInterval(time);
+                                let t = setTimeout(function(){
+                                    clearTimeout(t);
+                                    history.go(-1);
+                                    _this.setState({
+                                        maskShow:false
+                                    })
+                                },2000)
+                                Toast.info('支付成功！', 2);
+                            }else if (data.data.status == -3) {
+                                _this.setState({
+                                    maskShow:false
+                                })
+                                clearInterval(time);
+                                Toast.info('支付失败！', 2);
+                            }else if (data.data.status == 9) {
+                                _this.setState({
+                                    maskShow:false
+                                })
+                                clearInterval(time);
+                                Toast.info('已取消支付！', 2);
+                            }
+                        }))
+                    },2000)
                     wx.miniProgram.navigateTo({
-                        url: '../pay/pay?timeStamp='+result.data.timeStamp+'&nonceStr='+result.data.nonceStr+'&package='+packageText+'&signType='+result.data.signType+'&paySign='+result.data.paySign
+                        url: '../pay/pay?timeStamp='+result.data.timeStamp+'&nonceStr='+result.data.nonceStr+'&package='+packageText+'&signType='+result.data.signType+'&paySign='+result.data.paySign+'&orderId='+result.data.orderId
+                    })
+                    _this.setState({
+                        maskShow:true
                     })
                 }else{
                     WeixinJSBridge.invoke(
@@ -199,6 +231,7 @@ class ConfirmOrder extends Component {
     }
 
     render() {
+        console.log("pay_load--------------");
         return <div className={style.confirmOrder}>
             <TitleBar title="确认订单"/>
             {this.props.confirmOrderDetail ?
@@ -253,6 +286,7 @@ class ConfirmOrder extends Component {
                     this.submit()
                 }}>{'确认支付￥' + this.getPayCount()}</SubmitButton>
             </div> : ''}
+            {this.state.maskShow&&<div className={style.mask}><img src="./images/share/timg.gif"/></div>}
         </div>
     }
 }

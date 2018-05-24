@@ -27,6 +27,7 @@ class Login {
             callBack();
         }else{
             global.env = this.urlOperation.getParameters().env;
+            debugger;
             if(global.env === 'XCX'||window.__wxjs_environment === 'miniprogram'){
                 wx.miniProgram.reLaunch({
                     url: '../index/index?validate=no'

@@ -234,7 +234,7 @@ class Home extends Component {
                 {this.structProductList()}
                 {this.props.productList.length>=5?<div className={style.more} onClick={() => {
                     this.context.router.push(`/productList?productType=${currentTypeID}`)
-                }}>查看更多
+                }}>更多课程
                 </div>:""}
             </div> : <div className={style.none}>该分类暂无内容</div>
     };

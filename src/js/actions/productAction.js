@@ -58,3 +58,7 @@ export const initOrder=(data,callBack)=> {
 export const createOrder=(data,callBack)=> {
     return commonAction.simplePost(data,'api/createOrder',undefined,callBack);
 };
+//查询订单状态
+export const queryOrder=(data,callBack)=> {
+    return commonAction.simplePost(data,'api/queryOrder',undefined,callBack);
+};

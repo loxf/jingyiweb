@@ -54,6 +54,7 @@ class ApiHelper {
                     let resp = response.json();
                     resp.then(function (data) {
                         if (data.code == "-1") {
+                            debugger;
                             //location.replace(`https://www.jingyizaixian.com/api/login?targetUrl=${encodeURIComponent(location.href)}${window.location.href.indexOf("local.jingyizaixian") > -1 ? '&XDebug=JY123456QWE' : ''}`);
                             if(window.__wxjs_environment === 'miniprogram'||global.env === 'XCX'){
                                 wx.miniProgram.reLaunch({
