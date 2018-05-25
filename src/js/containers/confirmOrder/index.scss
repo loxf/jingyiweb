@@ -65,3 +65,10 @@
   left:0;
   right:0;
 }
+.mask>img{
+  position: absolute;
+  left: calc(50% - 50px);
+  top: calc(50% - 50px);
+  height: 100px;
+  width: 100px;
+}
