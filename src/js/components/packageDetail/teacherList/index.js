@@ -9,7 +9,7 @@ class TeacherList extends Component {
     renderTitle = (title) => {
         let titleArr = title.split(",");
         return titleArr.map((v,i)=>{
-            return <div className={style.position}>{v}</div>
+            return <div key={"teacher"+i} className={style.position}>{v}</div>
         })
     }
     structTeacherList(){

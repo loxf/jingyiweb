@@ -158,8 +158,8 @@ class LessonDetail extends Component {
 
     //通过分享进来的点击后退按钮回到首页
     detailBack() {
-        if (this.urlOperation.getParameters().recommend) {
-            this.context.router.replace('');
+        if (history.length == 1) {
+            this.context.router.push('/');
         }
         else {
             history.back();

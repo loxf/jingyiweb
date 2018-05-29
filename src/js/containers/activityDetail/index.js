@@ -92,8 +92,8 @@ class ActivityDetail extends Component {
     }
 
     detailBack() {
-        if (this.urlOperation.getParameters().recommend) {
-            this.context.router.replace('');
+        if (history.length == 1) {
+            this.context.router.push('/');
         }
         else {
             history.back();

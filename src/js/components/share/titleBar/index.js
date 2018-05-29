@@ -53,8 +53,7 @@ class TitleBar extends Component {
     back() {
         if (this.props.back) {
             this.props.back();
-        }
-        else {
+        } else {
             history.back();
         }
     }
