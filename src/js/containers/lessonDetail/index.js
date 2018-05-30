@@ -173,6 +173,23 @@ class LessonDetail extends Component {
 
 
     render() {
+        let detailContent = this.props.productHtml;
+        // console.log("one:"+detailContent);
+        let showContant = false;
+        if (window.__wxjs_environment === 'miniprogram') {
+            if (detailContent) {
+                let test= new RegExp("<iframe[^>]*?>.*?</iframe>");
+                detailContent = detailContent.replace(test,"");
+                // console.log("two:"+detailContent);
+                showContant = true;
+            }
+        }else{
+            if (detailContent) {
+                showContant = true;
+            }
+        }
+        //以上处理小程序不能播放腾讯视频兼容
+        
         return <div className={style.cotainer}>
             <ShareGuide ref="shareGuide"/>
             <TitleBar title="课程详情" rightArray={[{
@@ -209,8 +226,8 @@ class LessonDetail extends Component {
                     <TeacherList teachers={this.props.productDetail.teacher}/>
                 </div>
 
-                {this.props.productHtml ? <div className={style.detail}>
-                    <DangerousHtmlItem title="课程详情" inner={this.props.productHtml}/>
+                {showContant ? <div className={style.detail}>
+                    <DangerousHtmlItem title="课程详情" inner={detailContent}/>
                 </div> : ''}
                 <BottomButton btns={this.structButtonArray(this.props.productDetail.btns)}/>
 

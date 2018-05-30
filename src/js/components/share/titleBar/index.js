@@ -53,7 +53,9 @@ class TitleBar extends Component {
     back() {
         if (this.props.back) {
             this.props.back();
-        } else {
+        }else if(history.length == 1) {
+            this.context.router.push('/');
+        }else {
             history.back();
         }
     }
@@ -71,5 +73,9 @@ class TitleBar extends Component {
         </div>
     }
 }
+//使用context
+TitleBar.contextTypes = {
+    router: React.PropTypes.object.isRequired
+};
 
 export default TitleBar

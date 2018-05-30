@@ -90,7 +90,7 @@ class BindCard extends Component {
     render() {
         return <div className={style.container}>
             <TitleBar share={false} title="新的银行卡" right={{
-                img: './images/share/fangzi.png', onClick: () => {
+                img: './images/share/home.png', onClick: () => {
                     this.goHome()
                 }
             }}/>

@@ -89,7 +89,7 @@ class Withdrawals extends Component {
 
     render() {
         return <div className={style.container}>
-            <TitleBar title="提现到微信钱包" right={{img:'./images/share/fangzi.png',onClick:()=>{this.goHome()}}}/>
+            <TitleBar title="提现到微信钱包" right={{img:'./images/share/home.png',onClick:()=>{this.goHome()}}}/>
             <div className={style.content}>
                 <div className={style.message}>提现金额（费率0.6%）</div>
                 <div className={style.input}>

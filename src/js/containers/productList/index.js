@@ -135,6 +135,7 @@ class ProductList extends Component {
             })
         }
     }
+    //通过公众号直接进入
     render() {
         return <div className={style.activityList}>
             <TitleBar title="课程列表" right={{
