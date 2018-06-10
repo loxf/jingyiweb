@@ -1,7 +1,7 @@
 import {INIT_DATA,ACTIVITY_LIST,LESSION_TYPES,PRODUCT_LIST,USER_INFO,AREA_DATA,SCROLL_POSITION} from '../actions/actionsTypes';
 
 export default function homeReducer(state = {}, action) {
-    console.log(action.type);
+    // console.log(action.type);
     switch (action.type) {
         case INIT_DATA:
             return Object.assign({}, state, {initData: action.data});

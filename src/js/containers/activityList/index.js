@@ -21,7 +21,6 @@ class ActivityList extends Component {
 
     //构建列表主体内容
     structListContent(additionalData) {
-        console.log(additionalData);
         this.setState({
             content: <ItemList>
                 {this.props.activities.map((item, index) => {
