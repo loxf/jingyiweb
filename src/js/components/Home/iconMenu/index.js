@@ -90,10 +90,10 @@ class IconMenu extends Component {
                 <img src={BZRSrc}/>
                 <div>添加班主任</div>
             </div>
-            <div className={style.menuItem}>
+            {/* <div className={style.menuItem}>
                 <img src={VIPSrc} onClick={()=>{this.context.router.push('confirmOrder?type=VIP&id=OFFER001&otherId=OFFER002')}}/>
                 <div>{userLevel == 'NONE'?"会员升级":"会员续期"}</div>
-            </div>
+            </div> */}
             {/* {userLevel == 'NONE' ? <div className={style.menuItem}>
                 <img src={VIPSrc} onClick={()=>{this.context.router.push('confirmOrder?type=VIP&id=OFFER001&otherId=OFFER002')}}/>
                 <div>会员升级</div>
