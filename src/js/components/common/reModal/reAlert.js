@@ -184,7 +184,7 @@ class ReAlert extends Component {
         }else{
             return <div>
                 <div className={this.flexStyle()}  onClick={()=>{this.maskClick()}}>
-                    <div ref="alert" className={this.alertStyle()}  onClick={this.contentClick}>
+                    <div className={this.alertStyle()}  onClick={this.contentClick}>
                         {
                             this.renderCloseContainer()
                         }

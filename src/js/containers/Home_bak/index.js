@@ -679,7 +679,7 @@ class Home extends Component {
                 </div>
 
                 {/*</ScrollContainer>*/}
-                <div className={style.buttonDiv} ref="buttonDiv">
+                <div className={style.buttonDiv}>
                     <ButtonWithCxytj  onClick={() => {
                         this.doItNow()
                     }} className={this.getMainButtonClass()}>{this.state.buttonText}</ButtonWithCxytj>

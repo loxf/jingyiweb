@@ -70,7 +70,7 @@ class Withdrawals extends Component {
             document.getElementById('withdrawalsPassword').value='';
             this.password='';
         },0);
-        ReModal.alert(<div className={style.password}><input id="withdrawalsPassword" ref="passwordInput" type="password" placeholder="请输入提现密码" onInput={(e)=>{this.password=e.target.value}}/></div>,()=>{
+        ReModal.alert(<div className={style.password}><input id="withdrawalsPassword" type="password" placeholder="请输入提现密码" onInput={(e)=>{this.password=e.target.value}}/></div>,()=>{
             let submitObj={
                 balance:this.state.money,
                 objId:cookiesOperation.getCookie('JY_CUST_ID'),
